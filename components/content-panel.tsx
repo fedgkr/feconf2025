@@ -258,6 +258,7 @@ export default function ContentPanel({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      transition: 'left 0.3s ease-in-out, width 0.3s ease-in-out',
     };
   };
 
