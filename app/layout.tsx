@@ -1,41 +1,49 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Questrial, Orbitron, Zen_Dots } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
+import type React from 'react';
+import type { Metadata } from 'next';
+import { Questrial, Orbitron, Zen_Dots } from 'next/font/google';
+import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const questrial = Questrial({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-questrial",
-  display: "swap",
-})
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-questrial',
+  display: 'swap',
+});
 
 // Coral Pixels 대신 Orbitron 폰트를 사용 (픽셀 스타일 디지털 폰트)
 const orbitron = Orbitron({
-  subsets: ["latin"],
-  variable: "--font-orbitron",
-  display: "swap",
-})
+  subsets: ['latin'],
+  variable: '--font-orbitron',
+  display: 'swap',
+});
 
 // Zen Dots 폰트 추가
 const zenDots = Zen_Dots({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-zen-dots",
-  display: "swap",
-})
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-zen-dots',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: "FEconf 2025 - Frontend Developer Conference",
+  title: 'FEconf 2025',
   description: "Korea's largest frontend development conference",
-    generator: 'v0.dev'
-}
+  icons: {
+    icon: '/metadata/fe2025_fav.png',
+  },
+  openGraph: {
+    title: 'FEconf 2025',
+    description: "Korea's largest frontend development conference",
+    images: ['metadata/fe2025_og.jpg'],
+  },
+  generator: 'v0.dev',
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -50,11 +58,18 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${questrial.className} ${questrial.variable} ${orbitron.variable} ${zenDots.variable}`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+      <body
+        className={`${questrial.className} ${questrial.variable} ${orbitron.variable} ${zenDots.variable}`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
           {children}
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
