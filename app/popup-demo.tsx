@@ -1,18 +1,20 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import FuturisticPopup from "@/components/futuristic-popup"
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import FuturisticPopup from '@/components/futuristic-popup';
 
 export default function PopupDemo() {
-  const [isInfoOpen, setIsInfoOpen] = useState(false)
-  const [isSuccessOpen, setIsSuccessOpen] = useState(false)
-  const [isWarningOpen, setIsWarningOpen] = useState(false)
-  const [isErrorOpen, setIsErrorOpen] = useState(false)
+  const [isInfoOpen, setIsInfoOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [isWarningOpen, setIsWarningOpen] = useState(false);
+  const [isErrorOpen, setIsErrorOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center justify-center gap-6 p-4">
-      <h1 className="text-3xl font-bold text-white mb-8">Futuristic Popup Demo</h1>
+      <h1 className="text-3xl font-bold text-white mb-8">
+        Futuristic Popup Demo
+      </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Button
@@ -55,12 +57,13 @@ export default function PopupDemo() {
       >
         <div className="space-y-4">
           <p>
-            Welcome to the FEconf 2025 system interface. This popup demonstrates the futuristic UI design with sleek,
-            dark backgrounds and glowing neon elements.
+            Welcome to the FEConf 2025 system interface. This popup demonstrates
+            the futuristic UI design with sleek, dark backgrounds and glowing
+            neon elements.
           </p>
           <p>
-            The design includes rounded corners, subtle gradients, and glossy reflections to create an immersive sci-fi
-            experience.
+            The design includes rounded corners, subtle gradients, and glossy
+            reflections to create an immersive sci-fi experience.
           </p>
         </div>
       </FuturisticPopup>
@@ -76,8 +79,8 @@ export default function PopupDemo() {
       >
         <div className="space-y-4">
           <p>
-            Your registration for FEconf 2025 has been successfully processed. You will receive a confirmation email
-            shortly.
+            Your registration for FEConf 2025 has been successfully processed.
+            You will receive a confirmation email shortly.
           </p>
           <div className="bg-[#0FFFFF]/10 p-3 rounded-md border border-[#0FFFFF]/30">
             <p className="text-[#0FFFFF]">Ticket ID: FEC-2025-0042</p>
@@ -95,9 +98,14 @@ export default function PopupDemo() {
         onAction={() => setIsWarningOpen(false)}
       >
         <div className="space-y-4">
-          <p>You are about to access a restricted area of the system. This action will be logged and monitored.</p>
+          <p>
+            You are about to access a restricted area of the system. This action
+            will be logged and monitored.
+          </p>
           <div className="bg-[#FFD700]/10 p-3 rounded-md border border-[#FFD700]/30">
-            <p className="text-[#FFD700]">Security clearance level 3 required.</p>
+            <p className="text-[#FFD700]">
+              Security clearance level 3 required.
+            </p>
           </div>
         </div>
       </FuturisticPopup>
@@ -113,8 +121,8 @@ export default function PopupDemo() {
       >
         <div className="space-y-4">
           <p>
-            Unable to establish connection with the main database. This could be due to network issues or server
-            maintenance.
+            Unable to establish connection with the main database. This could be
+            due to network issues or server maintenance.
           </p>
           <div className="bg-[#FF4D4D]/10 p-3 rounded-md border border-[#FF4D4D]/30">
             <p className="text-[#FF4D4D]">Error Code: DB-CONNECTION-503</p>
@@ -122,5 +130,5 @@ export default function PopupDemo() {
         </div>
       </FuturisticPopup>
     </div>
-  )
+  );
 }

@@ -1,72 +1,84 @@
-"use client"
+'use client';
 
-import { motion, AnimatePresence } from "framer-motion"
-import { X, Mic, Ticket, Users, Sparkles, Building2, Youtube, UserRound, Eye } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useLanguage } from "./language-provider"
-import type { Section } from "@/lib/content"
-import { useEffect, useState, useRef } from "react"
-import { sections } from "@/lib/content"
-import { type Theme, themes } from "@/lib/themes"
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  X,
+  Mic,
+  Ticket,
+  Users,
+  Sparkles,
+  Building2,
+  Youtube,
+  UserRound,
+  Eye,
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from './language-provider';
+import type { Section } from '@/lib/content';
+import { useEffect, useState, useRef } from 'react';
+import { sections } from '@/lib/content';
+import { type Theme, themes } from '@/lib/themes';
 
 // Countdown Timer Component
 function CountdownTimer({ initialMinutes }: { initialMinutes: number }) {
-  const [timeLeft, setTimeLeft] = useState<number>(initialMinutes * 60)
+  const [timeLeft, setTimeLeft] = useState<number>(initialMinutes * 60);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
           // Reset to initial time when it reaches zero
-          return initialMinutes * 60
+          return initialMinutes * 60;
         }
-        return prevTime - 1
-      })
-    }, 1000)
+        return prevTime - 1;
+      });
+    }, 1000);
 
-    return () => clearInterval(timer)
-  }, [initialMinutes])
+    return () => clearInterval(timer);
+  }, [initialMinutes]);
 
   // Format time as 00:05:00
   const formatTime = () => {
-    const hours = Math.floor(timeLeft / 3600)
-    const minutes = Math.floor((timeLeft % 3600) / 60)
-    const seconds = timeLeft % 60
+    const hours = Math.floor(timeLeft / 3600);
+    const minutes = Math.floor((timeLeft % 3600) / 60);
+    const seconds = timeLeft % 60;
 
-    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`
-  }
+    return `${hours.toString().padStart(2, '0')}:${minutes
+      .toString()
+      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
 
   return (
     <motion.div
       className="text-2xl mb-2"
       animate={{
         scale: timeLeft <= 10 ? [1, 1.1, 1] : 1,
-        color: timeLeft <= 10 ? ["#FFFFFF", "#FF4D4D", "#FFFFFF"] : "#FFFFFF",
+        color: timeLeft <= 10 ? ['#FFFFFF', '#FF4D4D', '#FFFFFF'] : '#FFFFFF',
       }}
       transition={{
         duration: timeLeft <= 10 ? 0.5 : 0,
         repeat: timeLeft <= 10 ? Number.POSITIVE_INFINITY : 0,
-        repeatType: "reverse",
+        repeatType: 'reverse',
       }}
     >
       {formatTime()}
     </motion.div>
-  )
+  );
 }
 
 // ContentPanel 컴포넌트의 props 인터페이스에 useDefaultUIColor 추가
 interface ContentPanelProps {
-  section: Section
-  onClose: () => void
-  onSectionChange?: (sectionId: string) => void
-  sidebarOpen?: boolean
-  sidebarWidth?: number
-  theme?: Theme
-  useDefaultUIColor?: boolean // 기본 UI 색상 사용 여부 플래그 추가
+  section: Section;
+  onClose: () => void;
+  onSectionChange?: (sectionId: string) => void;
+  sidebarOpen?: boolean;
+  sidebarWidth?: number;
+  theme?: Theme;
+  useDefaultUIColor?: boolean; // 기본 UI 색상 사용 여부 플래그 추가
 }
 
 // 기본 UI 색상 상수 추가 (Cosmic Blue 테마의 색상)
-const defaultUIColor = "#FFFFFF"
+const defaultUIColor = '#FFFFFF';
 
 // ContentPanel 함수 매개변수에 useDefaultUIColor 추가
 export default function ContentPanel({
@@ -78,79 +90,79 @@ export default function ContentPanel({
   theme = themes[0],
   useDefaultUIColor = true, // 기본값은 true로 설정
 }: ContentPanelProps) {
-  const { t, language } = useLanguage()
-  const [showDetails, setShowDetails] = useState(false)
-  const [activeSection, setActiveSection] = useState<string>(section.id)
-  const [currentSection, setCurrentSection] = useState<Section>(section)
-  const [hasScroll, setHasScroll] = useState(false)
-  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false)
-  const [hasScrolled, setHasScrolled] = useState(false)
-  const contentRef = useRef<HTMLDivElement>(null)
+  const { t, language } = useLanguage();
+  const [showDetails, setShowDetails] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>(section.id);
+  const [currentSection, setCurrentSection] = useState<Section>(section);
+  const [hasScroll, setHasScroll] = useState(false);
+  const [isScrolledToBottom, setIsScrolledToBottom] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // 기본 UI 색상 정의 (Cosmic Blue 테마의 색상)
-  const defaultUIColor = "#FFFFFF"
+  const defaultUIColor = '#FFFFFF';
 
   // Use theme colors for styling or default UI color based on flag
-  const accentColor = useDefaultUIColor ? defaultUIColor : theme.uiColor
+  const accentColor = useDefaultUIColor ? defaultUIColor : theme.uiColor;
 
   // 티켓 모달(1번 모달)의 여백 값 - 15% 넓게 설정
-  const ticketMargin = "29px"
+  const ticketMargin = '29px';
 
   // 스피커 모달(2번 모달)의 여백 값 - 40% 넓게 설정
-  const speakerMargin = "35px"
+  const speakerMargin = '35px';
 
   // 라이트닝 톡 모달(4번 모달)의 여백 값 - 40% 넓게 설정
-  const lightningMargin = "35px"
+  const lightningMargin = '35px';
 
   // 표준 여백 값
-  const standardMargin = "25px"
+  const standardMargin = '25px';
 
   // 그라데이션 배경 스타일
   const gradientBorderStyle = {
     borderColor: `${accentColor}50`, // 30% opacity
-  }
+  };
 
   // 그라데이션 헤더 스타일
   const gradientHeaderStyle = {
     background: `linear-gradient(90deg, ${accentColor}20, ${accentColor}05)`,
     borderBottom: `1px solid ${accentColor}30`,
-  }
+  };
 
   // 버튼 스타일 - 모든 모달에서 공통으로 사용 (솔리드 화이트로 변경)
   const buttonStyle = {
     background: `#FFFFFF`,
-    color: "#0A2463",
-    fontWeight: "700", // bold에서 700으로 변경
-    fontSize: "1.1rem", // Increased font size
+    color: '#0A2463',
+    fontWeight: '700', // bold에서 700으로 변경
+    fontSize: '1.1rem', // Increased font size
     boxShadow: `0 0 15px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3), 0 0 45px rgba(255,255,255,0.1)`,
-    minWidth: "36.8%", // 고정 width에서 minWidth로 변경
-    height: "46.2px", // 42px * 1.1 (10% 증가)
-    padding: "0 1.5rem", // 좌우 패딩 추가
-  }
+    minWidth: '36.8%', // 고정 width에서 minWidth로 변경
+    height: '46.2px', // 42px * 1.1 (10% 증가)
+    padding: '0 1.5rem', // 좌우 패딩 추가
+  };
 
   // 버튼 호버 스타일
   const buttonHoverStyle = {
     background: `#FFFFFF`,
     boxShadow: `0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.2)`,
-  }
+  };
 
   // 42dot Sans 폰트 스타일
-  const fontStyle = { fontFamily: "var(--font-42dot)" }
+  const fontStyle = { fontFamily: 'var(--font-42dot)' };
 
   // Auto-show details after panel appears
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowDetails(true)
-    }, 800)
+      setShowDetails(true);
+    }, 800);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   // Update current section when section prop changes
   useEffect(() => {
-    setCurrentSection(section)
-    setActiveSection(section.id)
-  }, [section])
+    setCurrentSection(section);
+    setActiveSection(section.id);
+  }, [section]);
 
   // 언어 변경 감지를 위한 useEffect 추가
   useEffect(() => {
@@ -158,59 +170,74 @@ export default function ContentPanel({
     // 이 useEffect는 언어 변경 시에만 실행됨
 
     // 현재 섹션 정보 유지
-    const sectionData = sections.find((s) => s.id === activeSection)
+    const sectionData = sections.find((s) => s.id === activeSection);
     if (sectionData) {
-      setCurrentSection(sectionData)
+      setCurrentSection(sectionData);
     }
-  }, [language, activeSection])
+  }, [language, activeSection]);
 
   // Handle section change within the modal
   const handleSectionChange = (sectionId: string) => {
-    const newSection = sections.find((s) => s.id === sectionId)
+    const newSection = sections.find((s) => s.id === sectionId);
     if (newSection) {
-      setCurrentSection(newSection)
-      setActiveSection(sectionId)
+      setCurrentSection(newSection);
+      setActiveSection(sectionId);
 
       // Notify parent component if callback is provided
       if (onSectionChange) {
-        onSectionChange(sectionId)
+        onSectionChange(sectionId);
       }
     }
-  }
+  };
 
   // 섹션 ID에 따른 아이콘 반환
   const getSectionIcon = (sectionId: string, size = 16) => {
     switch (sectionId) {
-      case "hero":
-        return <Ticket size={size} />
-      case "speaker":
-        return <Mic size={size} />
-      case "lightning":
-        return <Sparkles size={size} />
-      case "sponsor":
-        return <Building2 size={size} />
+      case 'hero':
+        return <Ticket size={size} />;
+      case 'speaker':
+        return <Mic size={size} />;
+      case 'lightning':
+        return <Sparkles size={size} />;
+      case 'sponsor':
+        return <Building2 size={size} />;
       default:
-        return <Users size={size} />
+        return <Users size={size} />;
     }
-  }
+  };
 
   // 섹션 ID에 따라 다른 컨텐츠 렌더링
   const renderSectionContent = () => {
     switch (activeSection) {
-      case "hero":
-        return <TicketContent gradientStart={accentColor} gradientEnd={accentColor} />
-      case "sponsor":
+      case 'hero':
         return (
-          <SponsorContent
-            section={sections.find((s) => s.id === "sponsor")!}
+          <TicketContent
             gradientStart={accentColor}
             gradientEnd={accentColor}
           />
-        )
-      case "speaker":
-        return <SpeakerContent gradientStart={accentColor} gradientEnd={accentColor} />
-      case "lightning":
-        return <LightningContent gradientStart={accentColor} gradientEnd={accentColor} />
+        );
+      case 'sponsor':
+        return (
+          <SponsorContent
+            section={sections.find((s) => s.id === 'sponsor')!}
+            gradientStart={accentColor}
+            gradientEnd={accentColor}
+          />
+        );
+      case 'speaker':
+        return (
+          <SpeakerContent
+            gradientStart={accentColor}
+            gradientEnd={accentColor}
+          />
+        );
+      case 'lightning':
+        return (
+          <LightningContent
+            gradientStart={accentColor}
+            gradientEnd={accentColor}
+          />
+        );
       default:
         return (
           <DefaultContent
@@ -219,80 +246,88 @@ export default function ContentPanel({
             gradientStart={accentColor}
             gradientEnd={accentColor}
           />
-        )
+        );
     }
-  }
+  };
 
   // Calculate modal position based on sidebar state - 메인 콘텐츠 기준 가운데 정렬
   const getModalStyle = () => {
     return {
       left: `${sidebarWidth}px`,
       width: `calc(100% - ${sidebarWidth}px)`,
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    }
-  }
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    };
+  };
 
   // 스크롤 감지를 위한 useEffect 추가
   useEffect(() => {
     const checkScroll = () => {
-      const content = contentRef.current
-      if (!content) return
+      const content = contentRef.current;
+      if (!content) return;
 
       // 스크롤이 있는지 확인 - 더 정확한 계산
-      const hasVerticalScroll = content.scrollHeight > content.clientHeight + 10 // 여유 값 증가
-      setHasScroll(hasVerticalScroll)
+      const hasVerticalScroll =
+        content.scrollHeight > content.clientHeight + 10; // 여유 값 증가
+      setHasScroll(hasVerticalScroll);
 
       // 스크롤이 맨 아래에 있는지 확인 - 계산 방식 개선
-      const isAtBottom = Math.abs(content.scrollHeight - content.scrollTop - content.clientHeight) < 20
-      setIsScrolledToBottom(isAtBottom)
+      const isAtBottom =
+        Math.abs(
+          content.scrollHeight - content.scrollTop - content.clientHeight
+        ) < 20;
+      setIsScrolledToBottom(isAtBottom);
 
       // 스크롤 동작 감지 - 더 작은 값으로 변경하여 민감도 증가
       if (content.scrollTop > 5) {
-        setHasScrolled(true)
+        setHasScrolled(true);
       }
-    }
+    };
 
     // 초기 체크
-    checkScroll()
+    checkScroll();
 
     // 리사이즈 이벤트 리스너
-    window.addEventListener("resize", checkScroll)
+    window.addEventListener('resize', checkScroll);
 
     // 콘텐츠 영역에 스크롤 이벤트 리스너 추가
-    const content = contentRef.current
+    const content = contentRef.current;
     if (content) {
-      content.addEventListener("scroll", checkScroll)
+      content.addEventListener('scroll', checkScroll);
     }
 
     return () => {
-      window.removeEventListener("resize", checkScroll)
+      window.removeEventListener('resize', checkScroll);
       if (content) {
-        content.removeEventListener("scroll", checkScroll)
+        content.removeEventListener('scroll', checkScroll);
       }
-    }
-  }, [activeSection]) // activeSection이 변경될 때마다 다시 체크
+    };
+  }, [activeSection]); // activeSection이 변경될 때마다 다시 체크
 
   // 컴포넌트 마운트 후 약간의 지연을 두고 스크롤 상태 다시 확인
   useEffect(() => {
     // 컴포넌트가 렌더링된 후 약간의 지연을 두고 스크롤 상태 다시 확인
     const timer = setTimeout(() => {
-      const content = contentRef.current
-      if (!content) return
+      const content = contentRef.current;
+      if (!content) return;
 
-      const hasVerticalScroll = content.scrollHeight > content.clientHeight + 10
-      setHasScroll(hasVerticalScroll)
+      const hasVerticalScroll =
+        content.scrollHeight > content.clientHeight + 10;
+      setHasScroll(hasVerticalScroll);
 
-      const isAtBottom = Math.abs(content.scrollHeight - content.scrollTop - content.clientHeight) < 20
-      setIsScrolledToBottom(isAtBottom)
+      const isAtBottom =
+        Math.abs(
+          content.scrollHeight - content.scrollTop - content.clientHeight
+        ) < 20;
+      setIsScrolledToBottom(isAtBottom);
 
       // 초기 상태에서는 hasScrolled를 false로 설정하여 넛지가 표시되도록 함
-      setHasScrolled(false)
-    }, 500) // 지연 시간 증가
+      setHasScrolled(false);
+    }, 500); // 지연 시간 증가
 
-    return () => clearTimeout(timer)
-  }, [showDetails, activeSection]) // showDetails나 activeSection이 변경될 때 실행
+    return () => clearTimeout(timer);
+  }, [showDetails, activeSection]); // showDetails나 activeSection이 변경될 때 실행
 
   return (
     <motion.div
@@ -320,16 +355,16 @@ export default function ContentPanel({
             scale: 1,
             y: 0,
             opacity: 1,
-            height: "auto",
+            height: 'auto',
           }}
           exit={{ scale: 0.9, opacity: 0 }}
           style={{
-            width: "calc(100% - 40px)",
-            maxWidth: "900px", // 모달 가로 길이 증가 (800px → 900px)
-            maxHeight: "85vh",
+            width: 'calc(100% - 40px)',
+            maxWidth: '900px', // 모달 가로 길이 증가 (800px → 900px)
+            maxHeight: '85vh',
           }}
           transition={{
-            type: "spring",
+            type: 'spring',
             damping: 20,
             stiffness: 100,
           }}
@@ -349,12 +384,12 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
                   background: `linear-gradient(90deg, transparent, ${accentColor}70, transparent)`,
                   boxShadow: `0 0 5px ${accentColor}30, 0 0 10px ${accentColor}20`,
                 }}
-                initial={{ x: "-100%" }}
-                animate={{ x: "100%" }}
+                initial={{ x: '-100%' }}
+                animate={{ x: '100%' }}
                 transition={{
                   duration: 4,
                   repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
+                  ease: 'linear',
                 }}
               />
 
@@ -365,12 +400,12 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
                   background: `linear-gradient(180deg, transparent, ${accentColor}70, transparent)`,
                   boxShadow: `0 0 5px ${accentColor}30, 0 0 10px ${accentColor}20`,
                 }}
-                initial={{ y: "-100%" }}
-                animate={{ y: "100%" }}
+                initial={{ y: '-100%' }}
+                animate={{ y: '100%' }}
                 transition={{
                   duration: 4,
                   repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
+                  ease: 'linear',
                   delay: 1,
                 }}
               />
@@ -382,12 +417,12 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
                   background: `linear-gradient(270deg, transparent, ${accentColor}70, transparent)`,
                   boxShadow: `0 0 5px ${accentColor}30, 0 0 10px ${accentColor}20`,
                 }}
-                initial={{ x: "100%" }}
-                animate={{ x: "-100%" }}
+                initial={{ x: '100%' }}
+                animate={{ x: '-100%' }}
                 transition={{
                   duration: 4,
                   repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
+                  ease: 'linear',
                   delay: 2,
                 }}
               />
@@ -399,12 +434,12 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
                   background: `linear-gradient(0deg, transparent, ${accentColor}70, transparent)`,
                   boxShadow: `0 0 5px ${accentColor}30, 0 0 10px ${accentColor}20`,
                 }}
-                initial={{ y: "100%" }}
-                animate={{ y: "-100%" }}
+                initial={{ y: '100%' }}
+                animate={{ y: '-100%' }}
                 transition={{
                   duration: 4,
                   repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
+                  ease: 'linear',
                   delay: 3,
                 }}
               />
@@ -450,10 +485,10 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
                   backgroundColor: `${accentColor}10`,
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = accentColor
+                  e.currentTarget.style.color = accentColor;
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = `${accentColor}70`
+                  e.currentTarget.style.color = `${accentColor}70`;
                 }}
               >
                 <X size={16} />
@@ -481,7 +516,7 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
                     background: `linear-gradient(to right, ${accentColor}, ${accentColor})`,
                   }}
                   initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
+                  animate={{ width: '100%' }}
                   transition={{ delay: 0, duration: 0.8 }}
                 />
               </div>
@@ -489,12 +524,15 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
               {/* 섹션 설명 추가 */}
               <div className="mb-6">
                 <p className="text-white/80 text-sm md:text-base">
-                  {activeSection === "hero"
+                  {activeSection === 'hero'
                     ? t(
-                        "한국 최대 프론트엔드 개발 컨퍼런스, FEconf에서 다양한 기술과 트렌드를 경험하세요.",
-                        "Experience various technologies and trends at Korea's largest frontend development conference, FEconf.",
+                        '한국 최대 프론트엔드 개발 컨퍼런스, FEConf에서 다양한 기술과 트렌드를 경험하세요.',
+                        "Experience various technologies and trends at Korea's largest frontend development conference, FEConf."
                       )
-                    : t(currentSection.description.kr, currentSection.description.en)}
+                    : t(
+                        currentSection.description.kr,
+                        currentSection.description.en
+                      )}
                 </p>
               </div>
 
@@ -503,27 +541,36 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
 
               {/* Section button - 후원사 모달에서는 버튼을 내부로 이동시켰으므로 여기서는 표시하지 않음 */}
               {currentSection.button &&
-                activeSection !== "sponsor" &&
-                activeSection !== "speaker" &&
-                activeSection !== "lightning" &&
-                activeSection !== "speaker" &&
-                activeSection !== "lightning" && (
+                activeSection !== 'sponsor' &&
+                activeSection !== 'speaker' &&
+                activeSection !== 'lightning' &&
+                activeSection !== 'speaker' &&
+                activeSection !== 'lightning' && (
                   <div
                     className="w-full flex justify-center"
-                    style={{ marginTop: activeSection === "hero" ? ticketMargin : standardMargin }}
+                    style={{
+                      marginTop:
+                        activeSection === 'hero'
+                          ? ticketMargin
+                          : standardMargin,
+                    }}
                   >
                     <Button
                       className="group relative overflow-hidden transition-all duration-300 ease-in-out flex items-center justify-center rounded-[200px]"
                       style={buttonStyle}
                       onMouseEnter={(e) => {
-                        Object.assign(e.currentTarget.style, buttonHoverStyle)
+                        Object.assign(e.currentTarget.style, buttonHoverStyle);
                       }}
                       onMouseLeave={(e) => {
-                        Object.assign(e.currentTarget.style, buttonStyle)
+                        Object.assign(e.currentTarget.style, buttonStyle);
                       }}
                       onClick={() => {
                         // YouTube 채널 링크 열기
-                        window.open("https://www.youtube.com/@feconfkorea", "_blank", "noopener,noreferrer")
+                        window.open(
+                          'https://www.youtube.com/@feconfkorea',
+                          '_blank',
+                          'noopener,noreferrer'
+                        );
                       }}
                     >
                       <span className="relative z-10 whitespace-normal text-center px-1">
@@ -537,44 +584,54 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
         </motion.div>
       </AnimatePresence>
     </motion.div>
-  )
+  );
 }
 
 // 티켓 컨텐츠 컴포넌트 수정 - 카운트다운 타이머를 상단으로 이동
-function TicketContent({ gradientStart, gradientEnd }: { gradientStart: string; gradientEnd: string }) {
-  const { t, language } = useLanguage()
+function TicketContent({
+  gradientStart,
+  gradientEnd,
+}: {
+  gradientStart: string;
+  gradientEnd: string;
+}) {
+  const { t, language } = useLanguage();
   const [timeLeft, setTimeLeft] = useState<{
-    days: number
-    hours: number
-    minutes: number
-    seconds: number
-  }>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   // 42dot Sans 폰트 스타일
-  const fontStyle = { fontFamily: "var(--font-42dot)" }
+  const fontStyle = { fontFamily: 'var(--font-42dot)' };
 
   const [animatedStats, setAnimatedStats] = useState<{
-    participants: number
-    subscribers: number
-    views: number
+    participants: number;
+    subscribers: number;
+    views: number;
   }>({
     participants: 0,
     subscribers: 0,
     views: 0,
-  })
+  });
 
   // YouTube 채널 링크 열기 함수 추가
   const openYouTubeChannel = () => {
-    window.open("https://www.youtube.com/@feconfkorea", "_blank", "noopener,noreferrer")
-  }
+    window.open(
+      'https://www.youtube.com/@feconfkorea',
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
 
   // FEconf 날짜 설정 (2025년 8월 23일)
   useEffect(() => {
-    const feconfDate = new Date("2025-08-23T09:00:00+09:00")
+    const feconfDate = new Date('2025-08-23T09:00:00+09:00');
 
     const calculateTimeLeft = () => {
-      const now = new Date()
-      const difference = feconfDate.getTime() - now.getTime()
+      const now = new Date();
+      const difference = feconfDate.getTime() - now.getTime();
 
       if (difference > 0) {
         setTimeLeft({
@@ -582,136 +639,151 @@ function TicketContent({ gradientStart, gradientEnd }: { gradientStart: string; 
           hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
-        })
+        });
       }
-    }
+    };
 
     // 초기 계산
-    calculateTimeLeft()
+    calculateTimeLeft();
 
     // 1초마다 업데이트
-    const timer = setInterval(calculateTimeLeft, 1000)
+    const timer = setInterval(calculateTimeLeft, 1000);
 
     // 컴포넌트 언마운트 시 타이머 정리
-    return () => clearInterval(timer)
-  }, [])
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     // Start the animation after a short delay
     const timer = setTimeout(() => {
       // Define the target values
-      const targetParticipants = 3200
-      const targetSubscribers = 11000
-      const targetViews = 100000
+      const targetParticipants = 3200;
+      const targetSubscribers = 11000;
+      const targetViews = 100000;
 
       // Animation duration in ms
-      const duration = 2000
+      const duration = 2000;
       // Number of steps in the animation
-      const steps = 30
+      const steps = 30;
       // Time between steps
-      const stepTime = duration / steps
+      const stepTime = duration / steps;
 
-      let currentStep = 0
+      let currentStep = 0;
 
       const interval = setInterval(() => {
-        currentStep++
+        currentStep++;
 
         // Calculate current values based on easeOutQuad function
-        const progress = currentStep / steps
-        const easeProgress = 1 - (1 - progress) * (1 - progress) // easeOutQuad
+        const progress = currentStep / steps;
+        const easeProgress = 1 - (1 - progress) * (1 - progress); // easeOutQuad
 
         setAnimatedStats({
           participants: Math.round(targetParticipants * easeProgress),
           subscribers: Math.round(targetSubscribers * easeProgress),
           views: Math.round(targetViews * easeProgress),
-        })
+        });
 
         // Stop the animation when we reach the target
         if (currentStep >= steps) {
-          clearInterval(interval)
+          clearInterval(interval);
         }
-      }, stepTime)
+      }, stepTime);
 
       return () => {
-        clearInterval(interval)
-      }
-    }, 500) // Start after 500ms
+        clearInterval(interval);
+      };
+    }, 500); // Start after 500ms
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   // 통계 데이터
   const stats = [
     {
       icon: <UserRound size={22} />,
-      label: t("누적 참가자", "Total Participants"),
+      label: t('누적 참가자', 'Total Participants'),
       value: animatedStats.participants.toLocaleString(),
-      suffix: t("명", ""),
-      prefix: t("약 ", "about "),
+      suffix: t('명', ''),
+      prefix: t('약 ', 'about '),
     },
     {
       icon: <Youtube size={22} />,
-      label: t("Youtube 구독자", "Youtube Subscribers"),
+      label: t('Youtube 구독자', 'Youtube Subscribers'),
       value: animatedStats.subscribers.toLocaleString(),
-      suffix: t("명", ""),
+      suffix: t('명', ''),
     },
     {
       icon: <Eye size={22} />,
-      label: t("Youtube 연간 조회 수", "Youtube Annual Views"),
+      label: t('Youtube 연간 조회 수', 'Youtube Annual Views'),
       value: animatedStats.views.toLocaleString(),
-      suffix: t("view", ""),
+      suffix: t('view', ''),
     },
-  ]
+  ];
 
   // 그라데이션 배경 스타일
   const gradientBgStyle = {
     backgroundColor: `${gradientStart}10`,
     border: `1px solid ${gradientStart}30`,
-  }
+  };
 
   return (
     <div
       className="w-full flex flex-col items-center justify-center py-4"
-      style={{ maxWidth: "83%", margin: "0 auto", ...fontStyle }}
+      style={{ maxWidth: '83%', margin: '0 auto', ...fontStyle }}
     >
       {/* 카운트다운 타이머를 상단으로 이동 */}
       <div className="flex flex-col items-center justify-center gap-2 text-white/60 mb-8">
-        <div className="text-base font-questrial font-bold mb-2" style={{ fontWeight: "700" }}>
-          {t("FEconf 2025까지 남은 시간", "Time remaining until FEconf 2025")}
+        <div
+          className="text-base font-questrial font-bold mb-2"
+          style={{ fontWeight: '700' }}
+        >
+          {t('FEConf 2025까지 남은 시간', 'Time remaining until FEConf 2025')}
         </div>
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-center">
-            <div className="text-3xl font-bold text-white" style={{ fontWeight: "700" }}>
+            <div
+              className="text-3xl font-bold text-white"
+              style={{ fontWeight: '700' }}
+            >
               {timeLeft.days}
             </div>
-            <div className="text-sm">{t("일", "Days")}</div>
+            <div className="text-sm">{t('일', 'Days')}</div>
           </div>
-          <div className="text-2xl font-bold" style={{ fontWeight: "700" }}>
+          <div className="text-2xl font-bold" style={{ fontWeight: '700' }}>
             :
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-3xl font-bold text-white" style={{ fontWeight: "700" }}>
-              {timeLeft.hours.toString().padStart(2, "0")}
+            <div
+              className="text-3xl font-bold text-white"
+              style={{ fontWeight: '700' }}
+            >
+              {timeLeft.hours.toString().padStart(2, '0')}
             </div>
-            <div className="text-sm">{t("시간", "Hours")}</div>
+            <div className="text-sm">{t('시간', 'Hours')}</div>
           </div>
-          <div className="text-2xl font-bold" style={{ fontWeight: "700" }}>
+          <div className="text-2xl font-bold" style={{ fontWeight: '700' }}>
             :
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-3xl font-bold text-white" style={{ fontWeight: "700" }}>
-              {timeLeft.minutes.toString().padStart(2, "0")}
+            <div
+              className="text-3xl font-bold text-white"
+              style={{ fontWeight: '700' }}
+            >
+              {timeLeft.minutes.toString().padStart(2, '0')}
             </div>
-            <div className="text-sm">{t("분", "Minutes")}</div>
+            <div className="text-sm">{t('분', 'Minutes')}</div>
           </div>
-          <div className="text-2xl font-bold" style={{ fontWeight: "700" }}>
+          <div className="text-2xl font-bold" style={{ fontWeight: '700' }}>
             :
           </div>
           <div className="flex flex-col items-center">
-            <div className="text-3xl font-bold text-white" style={{ fontWeight: "700" }}>
-              {timeLeft.seconds.toString().padStart(2, "0")}
+            <div
+              className="text-3xl font-bold text-white"
+              style={{ fontWeight: '700' }}
+            >
+              {timeLeft.seconds.toString().padStart(2, '0')}
             </div>
-            <div className="text-sm">{t("초", "Seconds")}</div>
+            <div className="text-sm">{t('초', 'Seconds')}</div>
           </div>
         </div>
       </div>
@@ -724,23 +796,34 @@ function TicketContent({ gradientStart, gradientEnd }: { gradientStart: string; 
             className="flex flex-col items-center justify-center p-4 rounded-xl"
             style={{
               ...gradientBgStyle,
-              boxShadow: "none",
-              height: "120px", // Increased height by 20% (from ~100px)
+              boxShadow: 'none',
+              height: '120px', // Increased height by 20% (from ~100px)
             }}
           >
-            <div className="text-sm font-bold text-white/60 mb-1 text-center" style={{ fontWeight: "700" }}>
+            <div
+              className="text-sm font-bold text-white/60 mb-1 text-center"
+              style={{ fontWeight: '700' }}
+            >
               {stat.label}
             </div>
             <div className="flex items-baseline justify-center">
-              {stat.prefix && <span className="text-white/80 text-base mr-1">{stat.prefix}</span>}
-              <div className="text-3xl font-extrabold text-white">{stat.value}</div>
-              <span className="text-white/80 text-base ml-1">{stat.suffix}</span>
+              {stat.prefix && (
+                <span className="text-white/80 text-base mr-1">
+                  {stat.prefix}
+                </span>
+              )}
+              <div className="text-3xl font-extrabold text-white">
+                {stat.value}
+              </div>
+              <span className="text-white/80 text-base ml-1">
+                {stat.suffix}
+              </span>
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 // Other content components would follow here...
@@ -752,51 +835,51 @@ function SponsorContent({
   gradientStart,
   gradientEnd,
 }: {
-  section: Section
-  gradientStart: string
-  gradientEnd: string
+  section: Section;
+  gradientStart: string;
+  gradientEnd: string;
 }) {
-  const { t, language } = useLanguage()
+  const { t, language } = useLanguage();
   const [sponsorLogos] = useState([
-    { src: "/images/sponsors/oliveyoung.png", alt: "Olive Young" },
-    { src: "/images/sponsors/sponsor1.png", alt: "Sponsor 1" },
-    { src: "/images/sponsors/sponsor2.png", alt: "Sponsor 2" },
-    { src: "/images/sponsors/sponsor3.png", alt: "Sponsor 3" },
-    { src: "/images/sponsors/hyundai.png", alt: "Hyundai" },
-    { src: "/images/sponsors/googlecloud.png", alt: "Google Cloud" },
-  ])
+    { src: '/images/sponsors/oliveyoung.png', alt: 'Olive Young' },
+    { src: '/images/sponsors/sponsor1.png', alt: 'Sponsor 1' },
+    { src: '/images/sponsors/sponsor2.png', alt: 'Sponsor 2' },
+    { src: '/images/sponsors/sponsor3.png', alt: 'Sponsor 3' },
+    { src: '/images/sponsors/hyundai.png', alt: 'Hyundai' },
+    { src: '/images/sponsors/googlecloud.png', alt: 'Google Cloud' },
+  ]);
 
   // 42dot Sans 폰트 스타일
-  const fontStyle = { fontFamily: "var(--font-42dot)" }
+  const fontStyle = { fontFamily: 'var(--font-42dot)' };
 
   // 그라데이션 배경 스타일
   const gradientBgStyle = {
     backgroundColor: `${gradientStart}10`,
     border: `1px solid ${gradientStart}30`,
-  }
+  };
 
   // 버튼 스타일
   const buttonStyle = {
     background: `#FFFFFF`,
-    color: "#0A2463",
-    fontWeight: "700",
-    fontSize: "1.1rem",
+    color: '#0A2463',
+    fontWeight: '700',
+    fontSize: '1.1rem',
     boxShadow: `0 0 15px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3), 0 0 45px rgba(255,255,255,0.1)`,
-    minWidth: "36.8%",
-    height: "46.2px",
-    padding: "0 1.5rem",
-  }
+    minWidth: '36.8%',
+    height: '46.2px',
+    padding: '0 1.5rem',
+  };
 
   // 버튼 호버 스타일
   const buttonHoverStyle = {
     background: `#FFFFFF`,
     boxShadow: `0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.2)`,
-  }
+  };
 
   return (
     <div
       className="w-full flex flex-col justify-center py-2"
-      style={{ maxWidth: "83%", margin: "0 auto", ...fontStyle }}
+      style={{ maxWidth: '83%', margin: '0 auto', ...fontStyle }}
     >
       <div className="w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-visible">
@@ -805,13 +888,13 @@ function SponsorContent({
               <h2
                 className="text-2xl md:text-3xl font-extrabold overflow-visible whitespace-normal text-white"
                 style={{
-                  marginBottom: "1rem",
-                  lineHeight: "1.4",
-                  maxWidth: "100%",
-                  fontWeight: "700",
+                  marginBottom: '1rem',
+                  lineHeight: '1.4',
+                  maxWidth: '100%',
+                  fontWeight: '700',
                 }}
               >
-                {language === "kr" ? (
+                {language === 'kr' ? (
                   <>
                     FECONF25를
                     <br />
@@ -831,8 +914,13 @@ function SponsorContent({
               </h2>
             </div>
 
-            <div className="mt-4 text-base font-bold text-left text-white" style={{ fontWeight: "700" }}>
-              {language === "kr" ? "후원 문의: sponsor@feconf.org" : "Sponsorship inquiry: sponsor@feconf.org"}
+            <div
+              className="mt-4 text-base font-bold text-left text-white"
+              style={{ fontWeight: '700' }}
+            >
+              {language === 'kr'
+                ? '후원 문의: sponsor@feconf.org'
+                : 'Sponsorship inquiry: sponsor@feconf.org'}
             </div>
           </div>
 
@@ -841,17 +929,17 @@ function SponsorContent({
               <div className="space-y-3 text-white/90 text-sm">
                 <div className="flex items-start">
                   <p>
-                    {language === "kr"
-                      ? "FEConf는 국내외 프론트엔드 개발자들이 한자리에 모여 경험을 나누고, 기술의 흐름을 함께 만들어가는 자리입니다."
-                      : "FEConf is a place where frontend developers from Korea and abroad gather to share experiences and create technological trends together."}
+                    {language === 'kr'
+                      ? 'FEConf는 국내외 프론트엔드 개발자들이 한자리에 모여 경험을 나누고, 기술의 흐름을 함께 만들어가는 자리입니다.'
+                      : 'FEConf is a place where frontend developers from Korea and abroad gather to share experiences and create technological trends together.'}
                   </p>
                 </div>
 
                 <div className="flex items-start">
                   <p>
-                    {language === "kr"
-                      ? "For this event, we are looking for sponsors to communicate with more developers and provide a richer experience."
-                      : "For this event, we are looking for sponsors to communicate with more developers and provide a richer experience."}
+                    {language === 'kr'
+                      ? 'For this event, we are looking for sponsors to communicate with more developers and provide a richer experience.'
+                      : 'For this event, we are looking for sponsors to communicate with more developers and provide a richer experience.'}
                   </p>
                 </div>
               </div>
@@ -860,8 +948,11 @@ function SponsorContent({
         </div>
 
         <div className="mt-7 mb-6 overflow-hidden">
-          <div className="text-xs font-bold mb-4 text-white" style={{ fontWeight: "700" }}>
-            {language === "kr" ? "역대 후원사 리스트" : "Previous Sponsors"}
+          <div
+            className="text-xs font-bold mb-4 text-white"
+            style={{ fontWeight: '700' }}
+          >
+            {language === 'kr' ? '역대 후원사 리스트' : 'Previous Sponsors'}
           </div>
           <div className="relative w-full">
             <motion.div
@@ -873,8 +964,8 @@ function SponsorContent({
                 x: {
                   duration: 20,
                   repeat: Number.POSITIVE_INFINITY,
-                  repeatType: "loop",
-                  ease: "linear",
+                  repeatType: 'loop',
+                  ease: 'linear',
                 },
               }}
             >
@@ -882,13 +973,13 @@ function SponsorContent({
                 <div
                   key={`logo-${index}`}
                   className="mx-6 flex-shrink-0 bg-white/5 rounded-lg p-4 flex items-center justify-center"
-                  style={{ width: "180px", height: "100px" }}
+                  style={{ width: '180px', height: '100px' }}
                 >
                   <img
-                    src={logo.src || "/placeholder.svg"}
+                    src={logo.src || '/placeholder.svg'}
                     alt={logo.alt}
                     className="max-w-full max-h-full object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
-                    style={{ maxHeight: "70px" }}
+                    style={{ maxHeight: '70px' }}
                   />
                 </div>
               ))}
@@ -898,13 +989,13 @@ function SponsorContent({
                 <div
                   key={`logo-dup-${index}`}
                   className="mx-6 flex-shrink-0 bg-white/5 rounded-lg p-4 flex items-center justify-center"
-                  style={{ width: "180px", height: "100px" }}
+                  style={{ width: '180px', height: '100px' }}
                 >
                   <img
-                    src={logo.src || "/placeholder.svg"}
+                    src={logo.src || '/placeholder.svg'}
                     alt={logo.alt}
                     className="max-w-full max-h-full object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
-                    style={{ maxHeight: "70px" }}
+                    style={{ maxHeight: '70px' }}
                   />
                 </div>
               ))}
@@ -914,21 +1005,24 @@ function SponsorContent({
 
         {/* 버튼을 중앙에 배치하고 티켓 모달과 동일한 스타일로 변경 */}
         {section.button && (
-          <div className="w-full flex justify-center" style={{ marginTop: "35px" }}>
+          <div
+            className="w-full flex justify-center"
+            style={{ marginTop: '35px' }}
+          >
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSdIN9Yum9yOTNxq64uDVKUlxtQMZCPUmvxhQ_3YUGdsFtcVQQ/viewform?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: 'none' }}
             >
               <Button
                 className="group relative overflow-hidden transition-all duration-300 ease-in-out flex items-center justify-center rounded-[200px]"
                 style={buttonStyle}
                 onMouseEnter={(e) => {
-                  Object.assign(e.currentTarget.style, buttonHoverStyle)
+                  Object.assign(e.currentTarget.style, buttonHoverStyle);
                 }}
                 onMouseLeave={(e) => {
-                  Object.assign(e.currentTarget.style, buttonStyle)
+                  Object.assign(e.currentTarget.style, buttonStyle);
                 }}
               >
                 <span className="relative z-10 whitespace-normal text-center px-1">
@@ -940,69 +1034,75 @@ function SponsorContent({
         )}
       </div>
     </div>
-  )
+  );
 }
 
 // Define the missing content components
 // SpeakerContent 함수를 이전 레이아웃으로 복구합니다.
 // 다른 함수들은 그대로 유지합니다.
 
-function SpeakerContent({ gradientStart, gradientEnd }: { gradientStart: string; gradientEnd: string }) {
-  const { t, language } = useLanguage()
-  const [expandedSection, setExpandedSection] = useState<string | null>(null)
+function SpeakerContent({
+  gradientStart,
+  gradientEnd,
+}: {
+  gradientStart: string;
+  gradientEnd: string;
+}) {
+  const { t, language } = useLanguage();
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   // 42dot Sans 폰트 스타일
-  const fontStyle = { fontFamily: "var(--font-42dot)" }
+  const fontStyle = { fontFamily: 'var(--font-42dot)' };
 
   // 그라데이션 배경 스타일
   const gradientBgStyle = {
     backgroundColor: `${gradientStart}10`,
     border: `1px solid ${gradientStart}30`,
-  }
+  };
 
   // 버튼 스타일
   const buttonStyle = {
     background: `#FFFFFF`,
-    color: "#0A2463",
-    fontWeight: "700",
-    fontSize: "1.1rem",
+    color: '#0A2463',
+    fontWeight: '700',
+    fontSize: '1.1rem',
     boxShadow: `0 0 15px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3), 0 0 45px rgba(255,255,255,0.1)`,
-    minWidth: "36.8%",
-    height: "46.2px",
-    padding: "0 1.5rem",
-  }
+    minWidth: '36.8%',
+    height: '46.2px',
+    padding: '0 1.5rem',
+  };
 
   // 버튼 호버 스타일
   const buttonHoverStyle = {
     background: `#FFFFFF`,
     boxShadow: `0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.2)`,
-  }
+  };
 
   // Toggle section expansion
   const toggleSection = (section: string) => {
     if (expandedSection === section) {
-      setExpandedSection(null)
+      setExpandedSection(null);
     } else {
-      setExpandedSection(section)
+      setExpandedSection(section);
     }
-  }
+  };
 
   // Get section style based on expanded state
   const getSectionStyle = (section: string) => {
-    const isExpanded = expandedSection === section
+    const isExpanded = expandedSection === section;
     return {
       backgroundColor: isExpanded ? `${gradientStart}20` : `${gradientStart}10`,
       borderColor: `${gradientStart}30`,
-    }
-  }
+    };
+  };
 
   // 아코디언 아이템 데이터
   const accordionItems = [
     {
-      id: "how",
+      id: 'how',
       title: {
-        kr: "발표는 어떻게 신청하나요?",
-        en: "How to apply for a presentation?",
+        kr: '발표는 어떻게 신청하나요?',
+        en: 'How to apply for a presentation?',
       },
       content: {
         kr: `프론트엔드와 관련 있는 주제라면 무엇이든 환영합니다.
@@ -1016,10 +1116,10 @@ function SpeakerContent({ gradientStart, gradientEnd }: { gradientStart: string;
       },
     },
     {
-      id: "purpose",
+      id: 'purpose',
       title: {
-        kr: "FEConf의 목적은 무엇인가요?",
-        en: "What is the purpose of FEConf?",
+        kr: 'FEConf의 목적은 무엇인가요?',
+        en: 'What is the purpose of FEConf?',
       },
       content: {
         kr: `FEConf는 "프론트엔드 개발자에 의한, 프론트엔드 개발자를 위한" 컨퍼런스입니다.
@@ -1037,10 +1137,10 @@ Please share your concerns, solutions, special techniques, know-how, and tips th
       },
     },
     {
-      id: "topics",
+      id: 'topics',
       title: {
-        kr: "주제는 무엇이 있나요?",
-        en: "What topics are available?",
+        kr: '주제는 무엇이 있나요?',
+        en: 'What topics are available?',
       },
       content: {
         kr: `FEConf 채널들을 통해 'FEConf 2025에서 듣고 싶은 주제'를 조사했고, 그중 많이 언급된 주제들을 소개합니다.
@@ -1084,10 +1184,10 @@ The more relevant your topic is, the higher the chance of being selected. Of cou
       },
     },
     {
-      id: "schedule",
+      id: 'schedule',
       title: {
-        kr: "행사 일정이 어떻게 되나요?",
-        en: "What is the event schedule?",
+        kr: '행사 일정이 어떻게 되나요?',
+        en: 'What is the event schedule?',
       },
       content: {
         kr: `- 날짜: 2025년 8월 23일 (토)
@@ -1098,12 +1198,12 @@ The more relevant your topic is, the higher the chance of being selected. Of cou
 - Scale: Approximately 1,200 attendees expected (subject to change)`,
       },
     },
-  ]
+  ];
 
   return (
     <div
       className="w-full grid grid-cols-1 md:grid-cols-2 gap-8"
-      style={{ maxWidth: "83%", margin: "0 auto", ...fontStyle }}
+      style={{ maxWidth: '83%', margin: '0 auto', ...fontStyle }}
     >
       {/* 좌측 - 새로운 디자인으로 변경 */}
       <div className="flex flex-col h-full">
@@ -1126,13 +1226,13 @@ The more relevant your topic is, the higher the chance of being selected. Of cou
             <h2
               className="text-xl md:text-2xl font-extrabold overflow-visible whitespace-normal text-white"
               style={{
-                marginBottom: "0.75rem",
-                lineHeight: "1.4",
-                maxWidth: "100%",
-                fontWeight: "700",
+                marginBottom: '0.75rem',
+                lineHeight: '1.4',
+                maxWidth: '100%',
+                fontWeight: '700',
               }}
             >
-              {language === "kr" ? (
+              {language === 'kr' ? (
                 <>
                   2025 FEConf의
                   <br />
@@ -1149,7 +1249,7 @@ The more relevant your topic is, the higher the chance of being selected. Of cou
 
             {/* 마감일 정보 추가 */}
             <div className="text-white/70 text-xs mb-6 mt-2">
-              {language === "kr" ? (
+              {language === 'kr' ? (
                 <>
                   제안서 마감: 2025년 5월 16일 23:59:59
                   <br />
@@ -1170,20 +1270,20 @@ The more relevant your topic is, the higher the chance of being selected. Of cou
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfsCb3yeTBxqXMNgaH-a2U2EsFap9TZRF654lr2SfnA0XE_uQ/viewform?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: 'none' }}
               >
                 <Button
                   className="group relative overflow-hidden transition-all duration-300 ease-in-out flex items-center justify-center rounded-[200px]"
                   style={buttonStyle}
                   onMouseEnter={(e) => {
-                    Object.assign(e.currentTarget.style, buttonHoverStyle)
+                    Object.assign(e.currentTarget.style, buttonHoverStyle);
                   }}
                   onMouseLeave={(e) => {
-                    Object.assign(e.currentTarget.style, buttonStyle)
+                    Object.assign(e.currentTarget.style, buttonStyle);
                   }}
                 >
                   <span className="relative z-10 whitespace-normal text-center px-1">
-                    {language === "kr" ? "신청하기" : "Apply"}
+                    {language === 'kr' ? '신청하기' : 'Apply'}
                   </span>
                 </Button>
               </a>
@@ -1195,19 +1295,30 @@ The more relevant your topic is, the higher the chance of being selected. Of cou
       {/* 우측 - 아코디언 컴포넌트 */}
       <div className="flex flex-col space-y-4 w-full">
         {accordionItems.map((item) => (
-          <div key={item.id} className="rounded-xl overflow-hidden border" style={getSectionStyle(item.id)}>
+          <div
+            key={item.id}
+            className="rounded-xl overflow-hidden border"
+            style={getSectionStyle(item.id)}
+          >
             <button
               className="w-full px-4 py-4 flex justify-between items-center text-left"
               onClick={() => toggleSection(item.id)}
             >
-              <span className="text-white font-medium w-full">{language === "kr" ? item.title.kr : item.title.en}</span>
-              <span className="text-white flex-shrink-0">{expandedSection === item.id ? "−" : "+"}</span>
+              <span className="text-white font-medium w-full">
+                {language === 'kr' ? item.title.kr : item.title.en}
+              </span>
+              <span className="text-white flex-shrink-0">
+                {expandedSection === item.id ? '−' : '+'}
+              </span>
             </button>
 
             {expandedSection === item.id && (
-              <div className="px-6 pb-6" style={{ maxHeight: "300px", overflowY: "auto" }}>
+              <div
+                className="px-6 pb-6"
+                style={{ maxHeight: '300px', overflowY: 'auto' }}
+              >
                 <div className="text-white/80 text-sm whitespace-pre-line">
-                  {language === "kr" ? item.content.kr : item.content.en}
+                  {language === 'kr' ? item.content.kr : item.content.en}
                 </div>
               </div>
             )}
@@ -1215,42 +1326,42 @@ The more relevant your topic is, the higher the chance of being selected. Of cou
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 // 파동 애니메이션 컴포넌트 추가
 function WaveAnimation({ color }: { color: string }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const ctx = canvas.getContext("2d")
-    if (!ctx) return
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
     // 캔버스 크기 설정
     const resizeCanvas = () => {
-      const parent = canvas.parentElement
+      const parent = canvas.parentElement;
       if (parent) {
-        canvas.width = parent.clientWidth
-        canvas.height = parent.clientHeight
+        canvas.width = parent.clientWidth;
+        canvas.height = parent.clientHeight;
       }
-    }
+    };
 
-    resizeCanvas()
-    window.addEventListener("resize", resizeCanvas)
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
     // 파동 애니메이션 설정
-    let animationFrameId: number
-    let time = 0
+    let animationFrameId: number;
+    let time = 0;
 
     // 파동 그리기 함수
     const drawWaves = () => {
-      if (!ctx || !canvas) return
+      if (!ctx || !canvas) return;
 
       // 캔버스 초기화
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // 파동 설정
       const waves = [
@@ -1258,112 +1369,120 @@ function WaveAnimation({ color }: { color: string }) {
         { amplitude: 15, frequency: 0.03, speed: 0.02, opacity: 0.5 },
         { amplitude: 10, frequency: 0.04, speed: 0.04, opacity: 0.3 },
         { amplitude: 25, frequency: 0.01, speed: 0.01, opacity: 0.2 },
-      ]
+      ];
 
       // 각 파동 그리기
       waves.forEach((wave, index) => {
-        ctx.beginPath()
+        ctx.beginPath();
 
         // 파동 색상 설정 (테마 색상 사용)
-        ctx.strokeStyle = color || "#FFFFFF"
-        ctx.lineWidth = 1.5
-        ctx.globalAlpha = wave.opacity
+        ctx.strokeStyle = color || '#FFFFFF';
+        ctx.lineWidth = 1.5;
+        ctx.globalAlpha = wave.opacity;
 
         // 파동 경로 그리기
         for (let x = 0; x < canvas.width; x++) {
-          const y = canvas.height / 2 + Math.sin(x * wave.frequency + time * wave.speed) * wave.amplitude
+          const y =
+            canvas.height / 2 +
+            Math.sin(x * wave.frequency + time * wave.speed) * wave.amplitude;
 
           if (x === 0) {
-            ctx.moveTo(x, y)
+            ctx.moveTo(x, y);
           } else {
-            ctx.lineTo(x, y)
+            ctx.lineTo(x, y);
           }
         }
 
-        ctx.stroke()
-      })
+        ctx.stroke();
+      });
 
       // 시간 업데이트 - 1.5배 빠르게 수정
-      time += 0.075
+      time += 0.075;
 
       // 애니메이션 반복
-      animationFrameId = requestAnimationFrame(drawWaves)
-    }
+      animationFrameId = requestAnimationFrame(drawWaves);
+    };
 
     // 애니메이션 시작
-    drawWaves()
+    drawWaves();
 
     // 컴포넌트 언마운트 시 정리
     return () => {
-      window.removeEventListener("resize", resizeCanvas)
-      cancelAnimationFrame(animationFrameId)
-    }
-  }, [color])
+      window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [color]);
 
-  return <canvas ref={canvasRef} className="w-full h-full" />
+  return <canvas ref={canvasRef} className="w-full h-full" />;
 }
 
 // LightningContent 함수를 새로운 레이아웃으로 수정
-function LightningContent({ gradientStart, gradientEnd }: { gradientStart: string; gradientEnd: string }) {
-  const { t, language } = useLanguage()
-  const [expandedSection, setExpandedSection] = useState<string | null>(null)
+function LightningContent({
+  gradientStart,
+  gradientEnd,
+}: {
+  gradientStart: string;
+  gradientEnd: string;
+}) {
+  const { t, language } = useLanguage();
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   // 42dot Sans 폰트 스타일
-  const fontStyle = { fontFamily: "var(--font-42dot)" }
+  const fontStyle = { fontFamily: 'var(--font-42dot)' };
 
   // 그라데이션 배경 스타일
   const gradientBgStyle = {
     backgroundColor: `${gradientStart}10`,
     border: `1px solid ${gradientStart}30`,
-  }
+  };
 
   // 버튼 스타일
   const buttonStyle = {
     background: `#FFFFFF`,
-    color: "#0A2463",
-    fontWeight: "700",
-    fontSize: "1.1rem",
+    color: '#0A2463',
+    fontWeight: '700',
+    fontSize: '1.1rem',
     boxShadow: `0 0 15px rgba(255,255,255,0.5), 0 0 30px rgba(255,255,255,0.3), 0 0 45px rgba(255,255,255,0.1)`,
-    minWidth: "36.8%",
-    height: "46.2px",
-    padding: "0 1.5rem",
-  }
+    minWidth: '36.8%',
+    height: '46.2px',
+    padding: '0 1.5rem',
+  };
 
   // 버튼 호버 스타일
   const buttonHoverStyle = {
     background: `#FFFFFF`,
     boxShadow: `0 0 20px rgba(255,255,255,0.7), 0 0 40px rgba(255,255,255,0.4), 0 0 60px rgba(255,255,255,0.2)`,
-  }
+  };
 
   // Toggle section expansion
   const toggleSection = (section: string) => {
     if (expandedSection === section) {
-      setExpandedSection(null)
+      setExpandedSection(null);
     } else {
-      setExpandedSection(section)
+      setExpandedSection(section);
     }
-  }
+  };
 
   // Get section style based on expanded state
   const getSectionStyle = (section: string) => {
-    const isExpanded = expandedSection === section
+    const isExpanded = expandedSection === section;
     return {
       backgroundColor: isExpanded ? `${gradientStart}20` : `${gradientStart}10`,
       borderColor: `${gradientStart}30`,
-    }
-  }
+    };
+  };
 
   // 아코디언 아이템 데이터
   const accordionItems = [
     {
-      id: "purpose",
+      id: 'purpose',
       title: {
-        kr: "라이트닝 토크의 목적은 무엇인가요?",
-        en: "What is the purpose of Lightning Talk?",
+        kr: '라이트닝 토크의 목적은 무엇인가요?',
+        en: 'What is the purpose of Lightning Talk?',
       },
       content: {
         kr: `컨퍼런스의 어원인 "함께 의논하고 토론하다"를 살려, 더 많은 참가자들이 자유롭게 공감하고 대화를 나누는 자리를 만들었습니다.
-        
+
 10분 동안 본인의 이야기를 솔직하게 나누고, 참석자들과 함께 소통하며 의미 있는 시간을 만드는 과정을 통해 FEConf가 추구하는 '다양성과 포용성'의 가치를 구현하고자 합니다.
 
 아래 주제는 예시입니다. 여러분의 진솔한 이야기를 자유롭게 제안해주세요.
@@ -1385,10 +1504,10 @@ The topics below are examples. Please feel free to propose your own authentic st
       },
     },
     {
-      id: "who",
+      id: 'who',
       title: {
-        kr: "누가 발표할 수 있나요?",
-        en: "Who can present?",
+        kr: '누가 발표할 수 있나요?',
+        en: 'Who can present?',
       },
       content: {
         kr: `프론트엔드 개발과 관련된 경험을 공유하고 싶은 모든 분들입니다.
@@ -1406,10 +1525,10 @@ The topics below are examples. Please feel free to propose your own authentic st
       },
     },
     {
-      id: "first",
+      id: 'first',
       title: {
-        kr: "발표가 처음인데 괜찮을까요?",
-        en: "Is it okay if this is my first presentation?",
+        kr: '발표가 처음인데 괜찮을까요?',
+        en: 'Is it okay if this is my first presentation?',
       },
       content: {
         kr: `걱정 마세요! 핵심 메시지 정리와 발표 연습을 위한 사전 워크숍이 진행됩니다.
@@ -1426,12 +1545,12 @@ Please share your experiences with FEConf, such as challenges faced during front
 If you have any questions, please feel free to contact us at feconf@googlegroups.com.`,
       },
     },
-  ]
+  ];
 
   return (
     <div
       className="w-full grid grid-cols-1 md:grid-cols-2 gap-8"
-      style={{ maxWidth: "83%", margin: "0 auto", ...fontStyle }}
+      style={{ maxWidth: '83%', margin: '0 auto', ...fontStyle }}
     >
       {/* 좌측 - 제목과 부제목 */}
       <div className="flex flex-col h-full">
@@ -1454,13 +1573,13 @@ If you have any questions, please feel free to contact us at feconf@googlegroups
             <h2
               className="text-xl md:text-2xl font-extrabold overflow-visible whitespace-normal text-white"
               style={{
-                marginBottom: "0.75rem",
-                lineHeight: "1.4",
-                maxWidth: "100%",
-                fontWeight: "700",
+                marginBottom: '0.75rem',
+                lineHeight: '1.4',
+                maxWidth: '100%',
+                fontWeight: '700',
               }}
             >
-              {language === "kr" ? (
+              {language === 'kr' ? (
                 <>
                   단 10분,
                   <br />
@@ -1469,13 +1588,13 @@ If you have any questions, please feel free to contact us at feconf@googlegroups
                   모두와 소통하세요
                 </>
               ) : (
-                "Just 10 minutes, communicate with everyone briefly but intensely"
+                'Just 10 minutes, communicate with everyone briefly but intensely'
               )}
             </h2>
 
             {/* 마감일 정보 추가 */}
             <div className="text-white/70 text-xs mb-6 mt-2">
-              {language === "kr" ? (
+              {language === 'kr' ? (
                 <>
                   제안서 마감: 2025년 5월 16일 23:59:59
                   <br />
@@ -1496,20 +1615,20 @@ If you have any questions, please feel free to contact us at feconf@googlegroups
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfsCb3yeTBxqXMNgaH-a2U2EsFap9TZRF654lr2SfnA0XE_uQ/viewform?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: 'none' }}
               >
                 <Button
                   className="group relative overflow-hidden transition-all duration-300 ease-in-out flex items-center justify-center rounded-[200px]"
                   style={buttonStyle}
                   onMouseEnter={(e) => {
-                    Object.assign(e.currentTarget.style, buttonHoverStyle)
+                    Object.assign(e.currentTarget.style, buttonHoverStyle);
                   }}
                   onMouseLeave={(e) => {
-                    Object.assign(e.currentTarget.style, buttonStyle)
+                    Object.assign(e.currentTarget.style, buttonStyle);
                   }}
                 >
                   <span className="relative z-10 whitespace-normal text-center px-1">
-                    {language === "kr" ? "신청하기" : "Apply"}
+                    {language === 'kr' ? '신청하기' : 'Apply'}
                   </span>
                 </Button>
               </a>
@@ -1521,19 +1640,30 @@ If you have any questions, please feel free to contact us at feconf@googlegroups
       {/* 우측 - 아코디언 컴포넌트 */}
       <div className="flex flex-col space-y-4 w-full">
         {accordionItems.map((item) => (
-          <div key={item.id} className="rounded-xl overflow-hidden border" style={getSectionStyle(item.id)}>
+          <div
+            key={item.id}
+            className="rounded-xl overflow-hidden border"
+            style={getSectionStyle(item.id)}
+          >
             <button
               className="w-full px-4 py-4 flex justify-between items-center text-left"
               onClick={() => toggleSection(item.id)}
             >
-              <span className="text-white font-medium w-full">{language === "kr" ? item.title.kr : item.title.en}</span>
-              <span className="text-white flex-shrink-0">{expandedSection === item.id ? "−" : "+"}</span>
+              <span className="text-white font-medium w-full">
+                {language === 'kr' ? item.title.kr : item.title.en}
+              </span>
+              <span className="text-white flex-shrink-0">
+                {expandedSection === item.id ? '−' : '+'}
+              </span>
             </button>
 
             {expandedSection === item.id && (
-              <div className="px-6 pb-6" style={{ maxHeight: "300px", overflowY: "auto" }}>
+              <div
+                className="px-6 pb-6"
+                style={{ maxHeight: '300px', overflowY: 'auto' }}
+              >
                 <div className="text-white/80 text-sm whitespace-pre-line">
-                  {language === "kr" ? item.content.kr : item.content.en}
+                  {language === 'kr' ? item.content.kr : item.content.en}
                 </div>
               </div>
             )}
@@ -1541,7 +1671,7 @@ If you have any questions, please feel free to contact us at feconf@googlegroups
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 function DefaultContent({
@@ -1550,15 +1680,15 @@ function DefaultContent({
   gradientStart,
   gradientEnd,
 }: {
-  section: Section
-  showDetails: boolean
-  gradientStart: string
-  gradientEnd: string
+  section: Section;
+  showDetails: boolean;
+  gradientStart: string;
+  gradientEnd: string;
 }) {
   return (
     <div>
       <h2>Default Content</h2>
       {/* Add your default content here */}
     </div>
-  )
+  );
 }

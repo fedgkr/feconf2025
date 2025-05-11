@@ -165,7 +165,7 @@ function MainContent() {
           <div className="absolute sm:relative sm:left-auto left-1/2 transform sm:transform-none -translate-x-1/2 sm:translate-x-0">
             <Image
               src="/images/logo_web.png"
-              alt="FEconf 2025 Logo"
+              alt="FEConf 2025 Logo"
               width={100}
               height={22}
               className="h-auto sm:w-[120px] w-[100px]"
