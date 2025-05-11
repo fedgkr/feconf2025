@@ -1,114 +1,116 @@
-"use client"
+'use client';
 
-import type React from "react"
+import type React from 'react';
 
-import { Suspense, useState, useRef, useCallback, useEffect } from "react"
-import { LanguageProvider } from "@/components/language-provider"
-import PlanetExperience from "@/components/planet-experience"
-import LoadingScreen from "@/components/loading-screen"
-import CursorTrail from "@/components/cursor-trail" // 커서 트레일 다시 활성화
-import ToggleSidebar from "@/components/toggle-sidebar"
-import { sections } from "@/lib/content"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { useLanguage } from "@/components/language-provider"
-import type * as THREE from "three"
-import ThemeSelector from "@/components/theme-selector"
-import { themes, type Theme } from "@/lib/themes"
-import CardGenerator from "@/components/card-generator"
+import { Suspense, useState, useRef, useCallback, useEffect } from 'react';
+import { LanguageProvider } from '@/components/language-provider';
+import PlanetExperience from '@/components/planet-experience';
+import LoadingScreen from '@/components/loading-screen';
+import CursorTrail from '@/components/cursor-trail'; // 커서 트레일 다시 활성화
+import ToggleSidebar from '@/components/toggle-sidebar';
+import { sections } from '@/lib/content';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/components/language-provider';
+import type * as THREE from 'three';
+import ThemeSelector from '@/components/theme-selector';
+import { themes, type Theme } from '@/lib/themes';
+import CardGenerator from '@/components/card-generator';
 
 // 메인 컴포넌트를 분리하여 LanguageProvider 내부에서 렌더링
 function MainContent() {
-  const [loaded, setLoaded] = useState(false)
-  const [activeSection, setActiveSection] = useState<string | null>(null)
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { language, setLanguage, t } = useLanguage()
-  const [isMobile, setIsMobile] = useState(false)
-  const [showIntro, setShowIntro] = useState(false)
-  const [selectedTheme, setSelectedTheme] = useState<Theme>(themes[0])
-  const [developerCode, setDeveloperCode] = useState<string>("")
+  const [loaded, setLoaded] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
+  const [showIntro, setShowIntro] = useState(false);
+  const [selectedTheme, setSelectedTheme] = useState<Theme>(themes[0]);
+  const [developerCode, setDeveloperCode] = useState<string>('');
 
   // 기본 UI 색상 상수 추가 (Cosmic Blue 테마의 색상)
-  const defaultUIColor = "#29B6F6"
+  const defaultUIColor = '#29B6F6';
 
   // Handle theme selection
   const handleThemeChange = (theme: Theme) => {
-    setSelectedTheme(theme)
-  }
+    setSelectedTheme(theme);
+  };
 
   // Reference to the PlanetExperience component
   const planetExperienceRef = useRef<{
-    handleSectionClick: (sectionId: string) => void
-    getPlanetRef: () => React.RefObject<THREE.Group> | null
-  } | null>(null)
+    handleSectionClick: (sectionId: string) => void;
+    getPlanetRef: () => React.RefObject<THREE.Group> | null;
+  } | null>(null);
 
   // Handle section click from sidebar
   const handleSidebarSectionClick = useCallback((sectionId: string) => {
-    setActiveSection(sectionId)
+    setActiveSection(sectionId);
 
     // Call the handleSectionClick method in PlanetExperience
     if (planetExperienceRef.current) {
-      planetExperienceRef.current.handleSectionClick(sectionId)
+      planetExperienceRef.current.handleSectionClick(sectionId);
     }
-  }, [])
+  }, []);
 
   // 언어 변경 핸들러 - 이벤트 버블링 방지
   const handleLanguageChange = useCallback(
-    (lang: "kr" | "en", e: React.MouseEvent) => {
-      e.preventDefault()
-      e.stopPropagation()
-      setLanguage(lang)
+    (lang: 'kr' | 'en', e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setLanguage(lang);
     },
-    [setLanguage],
-  )
+    [setLanguage]
+  );
 
   // Sidebar width for calculations
-  const sidebarWidth = 240
-  const collapsedSidebarWidth = 70
+  const sidebarWidth = 240;
+  const collapsedSidebarWidth = 70;
 
   // 모바일 화면 감지
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640)
-    }
+      setIsMobile(window.innerWidth < 640);
+    };
 
     // 초기 체크
-    checkMobile()
+    checkMobile();
 
     // 리사이즈 이벤트 리스너
-    window.addEventListener("resize", checkMobile)
+    window.addEventListener('resize', checkMobile);
 
     return () => {
-      window.removeEventListener("resize", checkMobile)
-    }
-  }, [])
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   // Load developer code from localStorage
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedCode = localStorage.getItem("feconf-developer-code")
+    if (typeof window !== 'undefined') {
+      const savedCode = localStorage.getItem('feconf-developer-code');
       if (savedCode) {
-        setDeveloperCode(savedCode)
+        setDeveloperCode(savedCode);
       }
 
       // 언어 변경 이벤트 리스너 추가
       const handleLanguageChange = () => {
         // localStorage에서 언어 설정 다시 불러오기
-        const savedLanguage = localStorage.getItem("feconf-language") as "kr" | "en"
+        const savedLanguage = localStorage.getItem('feconf-language') as
+          | 'kr'
+          | 'en';
         if (savedLanguage && savedLanguage !== language) {
-          setLanguage(savedLanguage)
+          setLanguage(savedLanguage);
         }
-      }
+      };
 
       // 이벤트 리스너 등록
-      window.addEventListener("languageChange", handleLanguageChange)
+      window.addEventListener('languageChange', handleLanguageChange);
 
       // 컴포넌트 언마운트 시 이벤트 리스너 제거
       return () => {
-        window.removeEventListener("languageChange", handleLanguageChange)
-      }
+        window.removeEventListener('languageChange', handleLanguageChange);
+      };
     }
-  }, [language, setLanguage])
+  }, [language, setLanguage]);
 
   return (
     <div className="relative w-full h-screen bg-black overflow-hidden">
@@ -122,7 +124,10 @@ function MainContent() {
       />
 
       {/* Add ThemeSelector component */}
-      <ThemeSelector onSelectTheme={handleThemeChange} selectedThemeId={selectedTheme.id} />
+      <ThemeSelector
+        onSelectTheme={handleThemeChange}
+        selectedThemeId={selectedTheme.id}
+      />
 
       {/* Add CardGenerator component */}
       <CardGenerator
@@ -134,13 +139,18 @@ function MainContent() {
       <div
         className="absolute top-0 right-0 bottom-0 flex flex-col transition-all duration-300 ease-in-out"
         style={{
-          left: isMobile || showIntro ? 0 : sidebarOpen ? `${sidebarWidth}px` : `${collapsedSidebarWidth}px`,
+          left:
+            isMobile || showIntro
+              ? 0
+              : sidebarOpen
+              ? `${sidebarWidth}px`
+              : `${collapsedSidebarWidth}px`,
           width:
             isMobile || showIntro
-              ? "100%"
+              ? '100%'
               : sidebarOpen
-                ? `calc(100% - ${sidebarWidth}px)`
-                : `calc(100% - ${collapsedSidebarWidth}px)`,
+              ? `calc(100% - ${sidebarWidth}px)`
+              : `calc(100% - ${collapsedSidebarWidth}px)`,
         }}
       >
         {/* 상단 헤더 영역 - 로고와 텍스트를 포함 */}
@@ -148,7 +158,7 @@ function MainContent() {
           className="absolute top-0 left-0 right-0 z-10 flex sm:justify-between justify-center items-center px-6 sm:pl-6 sm:pr-3 py-4 sm:py-6 h-[70px] opacity-0 transform -translate-y-5"
           style={{
             borderBottom: `1px solid ${defaultUIColor}20`,
-            animation: "fadeInDown 0.8s ease-out 0.5s forwards",
+            animation: 'fadeInDown 0.8s ease-out 0.5s forwards',
           }}
         >
           {/* 로고 이미지 - 모바일에서는 중앙, 데스크톱에서는 좌측 */}
@@ -168,7 +178,7 @@ function MainContent() {
             <div
               className="absolute right-20 sm:hidden text-white/80 font-mono text-xs bg-black/30 px-2 py-0.5 rounded-full border border-white/10 opacity-0"
               style={{
-                animation: "fadeIn 0.5s ease-out 0.8s forwards",
+                animation: 'fadeIn 0.5s ease-out 0.8s forwards',
               }}
             >
               <span className="text-white/50 mr-1">code:</span>
@@ -183,7 +193,7 @@ function MainContent() {
               <div
                 className="text-white/80 font-mono text-sm bg-black/30 px-3 py-1 rounded-full border border-white/10 mr-4 opacity-0"
                 style={{
-                  animation: "fadeIn 0.5s ease-out 0.8s forwards",
+                  animation: 'fadeIn 0.5s ease-out 0.8s forwards',
                 }}
               >
                 <span className="text-white/50 mr-1">code:</span>
@@ -203,11 +213,11 @@ function MainContent() {
                 variant="ghost"
                 size="sm"
                 className={`rounded-full px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm transition-all ${
-                  language === "kr"
-                    ? "bg-white text-black font-medium"
-                    : "text-white/70 hover:text-white hover:bg-white/10"
+                  language === 'kr'
+                    ? 'bg-white text-black font-medium'
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
-                onClick={(e) => handleLanguageChange("kr", e)}
+                onClick={(e) => handleLanguageChange('kr', e)}
               >
                 KOR
               </Button>
@@ -215,11 +225,11 @@ function MainContent() {
                 variant="ghost"
                 size="sm"
                 className={`rounded-full px-2 sm:px-3 py-0.5 sm:py-1 text-xs sm:text-sm transition-all ${
-                  language === "en"
-                    ? "bg-white text-black font-medium"
-                    : "text-white/70 hover:text-white hover:bg-white/10"
+                  language === 'en'
+                    ? 'bg-white text-black font-medium'
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
-                onClick={(e) => handleLanguageChange("en", e)}
+                onClick={(e) => handleLanguageChange('en', e)}
               >
                 ENG
               </Button>
@@ -239,11 +249,11 @@ function MainContent() {
                 variant="ghost"
                 size="sm"
                 className={`rounded-full px-2 py-0.5 text-xs transition-all ${
-                  language === "kr"
-                    ? "bg-white text-black font-medium"
-                    : "text-white/70 hover:text-white hover:bg-white/10"
+                  language === 'kr'
+                    ? 'bg-white text-black font-medium'
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
-                onClick={(e) => handleLanguageChange("kr", e)}
+                onClick={(e) => handleLanguageChange('kr', e)}
               >
                 KOR
               </Button>
@@ -251,11 +261,11 @@ function MainContent() {
                 variant="ghost"
                 size="sm"
                 className={`rounded-full px-2 py-0.5 text-xs transition-all ${
-                  language === "en"
-                    ? "bg-white text-black font-medium"
-                    : "text-white/70 hover:text-white hover:bg-white/10"
+                  language === 'en'
+                    ? 'bg-white text-black font-medium'
+                    : 'text-white/70 hover:text-white hover:bg-white/10'
                 }`}
-                onClick={(e) => handleLanguageChange("en", e)}
+                onClick={(e) => handleLanguageChange('en', e)}
               >
                 ENG
               </Button>
@@ -270,7 +280,13 @@ function MainContent() {
               onLoaded={() => setLoaded(true)}
               ref={planetExperienceRef}
               sidebarOpen={sidebarOpen}
-              sidebarWidth={isMobile ? 0 : sidebarOpen ? sidebarWidth : collapsedSidebarWidth}
+              sidebarWidth={
+                isMobile
+                  ? 0
+                  : sidebarOpen
+                  ? sidebarWidth
+                  : collapsedSidebarWidth
+              }
               isIntroActive={false}
               selectedTheme={selectedTheme}
             />
@@ -284,25 +300,28 @@ function MainContent() {
           style={{
             borderTop: `1px solid ${defaultUIColor}20`,
             boxShadow: `0 -4px 20px ${defaultUIColor}10`,
-            animation: "fadeInUp 0.8s ease-out 1s forwards",
+            animation: 'fadeInUp 0.8s ease-out 1s forwards',
           }}
         >
           <div className="text-center max-w-full px-2">
             {/* 모바일용 텍스트 (한 줄) - 장소는 세종대학교 광개토관만 표시 */}
             <p className="md:hidden text-white/50 text-xs sm:text-xs whitespace-normal break-words">
-              {t("8월 23일 토요일", "Saturday, August 23")},{" "}
-              {t("세종대학교 광개토관", "Gwanggaeto Building, Sejong University")}, {t("문의사항", "contact")}:
-              feconf@googlegroups.com
+              {t('8월 23일 토요일', 'Saturday, August 23')},{' '}
+              {t(
+                '세종대학교 광개토관',
+                'Gwanggaeto Building, Sejong University'
+              )}
+              , {t('문의사항', 'contact')}: feconf@googlegroups.com
             </p>
 
             {/* 태블릿 이상 텍스트 (한 줄) - 전체 주소 표시 */}
             <p className="hidden md:block text-white/50 md:text-xs lg:text-sm whitespace-normal break-words">
-              {t("8월 23일 토요일", "Saturday, August 23")},{" "}
+              {t('8월 23일 토요일', 'Saturday, August 23')},{' '}
               {t(
-                "서울특별시 광진구 능동로 209, 세종대학교 광개토관",
-                "209 Neungdong-ro, Gwangjin-gu, Seoul, Korea, Gwanggaeto Building, Sejong University",
+                '서울특별시 광진구 능동로 209, 세종대학교 광개토관',
+                '209 Neungdong-ro, Gwangjin-gu, Seoul, Korea, Gwanggaeto Building, Sejong University'
               )}
-              , {t("문의사항", "contact")}: feconf@googlegroups.com
+              , {t('문의사항', 'contact')}: feconf@googlegroups.com
             </p>
           </div>
         </div>
@@ -314,34 +333,38 @@ function MainContent() {
       {/* Add CSS animations */}
       <style jsx global>{`
         @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
-        
+
         @keyframes fadeInDown {
-          from { 
+          from {
             opacity: 0;
             transform: translateY(-20px);
           }
-          to { 
+          to {
             opacity: 1;
             transform: translateY(0);
           }
         }
-        
+
         @keyframes fadeInUp {
-          from { 
+          from {
             opacity: 0;
             transform: translateY(20px);
           }
-          to { 
+          to {
             opacity: 1;
             transform: translateY(0);
           }
         }
       `}</style>
     </div>
-  )
+  );
 }
 
 // 루트 컴포넌트는 LanguageProvider만 렌더링
@@ -350,5 +373,5 @@ export default function Home() {
     <LanguageProvider>
       <MainContent />
     </LanguageProvider>
-  )
+  );
 }
