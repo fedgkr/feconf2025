@@ -2,11 +2,38 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  "repository": "git@github.com:fedgkr/feconf2025.git",
+  "contributors": [
+    {
+      "name": "Chaehyun Kim",
+      "email": "elina001106@gmail.com",
+      "url": "https://www.linkedin.com/in/chaehyunkim1106"
+    },
+    {
+      "name": "Juyun Cheon",
+      "email": "ewq3167@gmail.com",
+      "url": "https://www.linkedin.com/in/juyun-cheon-713b37243"
+    },
+    {
+      "name": "Daybrush",
+      "email": "daybrush@gmail.com",
+      "url": "https://github.com/daybrush"
+    },
+    {
+      "name": "Jooyoung Moon",
+      "email": "hckrmoon@gmail.com",
+      "url": "https://github.com/codemilli"
+    }
+  ],
+  "homepage": "https://2025.feconf.kr",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "env": "touch out/.nojekyll && echo '2025.feconf.kr' >> out/CNAME",
+    "push": "push-dir --dir=out --branch=gh-pages --cleanup --verbose",
+    "deploy": "npm run build && npm run env && npm run push"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
@@ -79,6 +106,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "postcss": "^8",
+    "push-dir": "^0.4.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   },
