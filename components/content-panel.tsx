@@ -1267,7 +1267,7 @@ The more relevant your topic is, the higher the chance of being selected. Of cou
             {/* 버튼 */}
             <div className="mt-4">
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSfsCb3yeTBxqXMNgaH-a2U2EsFap9TZRF654lr2SfnA0XE_uQ/viewform?usp=sharing"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSc3iDhDVdbYjnkVeZC3PNxdiNvNKj9wKYOyOUxUXwaBpBeyZA/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ textDecoration: 'none' }}
