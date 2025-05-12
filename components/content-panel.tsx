@@ -258,7 +258,6 @@ export default function ContentPanel({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      transition: 'left 0.3s ease-in-out, width 0.3s ease-in-out',
     };
   };
 
@@ -332,7 +331,7 @@ export default function ContentPanel({
 
   return (
     <motion.div
-      className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none"
+      className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-none transition-width transition-width ease-in-out duration-300"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}

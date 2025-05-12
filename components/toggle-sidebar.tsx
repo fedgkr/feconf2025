@@ -215,12 +215,8 @@ export default function ToggleSidebar({
       {/* 데스크톱 사이드바 - 모바일에서는 렌더링하지 않음 */}
       {!isMobile && (
         <motion.div
-          className="fixed left-0 top-0 bottom-0 z-40 sidebar-container bg-black/30 backdrop-blur-md border-r border-white/10"
-          initial={{ width: collapsedSidebarWidth }}
-          animate={{
-            width: isOpen ? sidebarWidth : collapsedSidebarWidth,
-          }}
-          transition={{ duration: 0.3 }}
+          className="fixed left-0 top-0 bottom-0 z-40 sidebar-container bg-black/30 backdrop-blur-md border-r border-white/10 transition-width duration-300"
+          style={{ width: isOpen ? sidebarWidth : collapsedSidebarWidth }}
         >
           <div className="h-full pt-16 overflow-hidden">
             <div className="text-white h-full relative">
