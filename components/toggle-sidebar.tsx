@@ -94,7 +94,7 @@ export default function ToggleSidebar({
       {isMobile && (
         <div className="fixed top-4 left-0 w-[70px] flex justify-center z-50">
           <motion.button
-            className="p-3 rounded-full transition-colors duration-200 bg-transparent hover:bg-white/10 sidebar-toggle"
+            className="p-3 rounded-full transition-colors duration-200 bg-transparent hover:bg-white/10 sidebar-toggle outline-none"
             style={{ color: 'white' }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileHover={{ scale: 1.1 }}
@@ -111,7 +111,7 @@ export default function ToggleSidebar({
       {!isMobile && (
         <div className="fixed top-4 left-0 w-[70px] flex justify-center z-50">
           <motion.button
-            className="p-3 rounded-full transition-colors duration-200 bg-transparent hover:bg-white/10 sidebar-toggle"
+            className="p-3 rounded-full transition-colors duration-200 bg-transparent hover:bg-white/10 sidebar-toggle outline-none"
             style={{ color: 'white' }}
             onClick={() => setIsOpen(!isOpen)}
             whileHover={{ scale: 1.1 }}
@@ -138,7 +138,7 @@ export default function ToggleSidebar({
               {/* 닫기 버튼 */}
               <div className="absolute top-4 right-4">
                 <button
-                  className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white"
+                  className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white outline-none"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <X size={20} />
@@ -307,7 +307,7 @@ export default function ToggleSidebar({
                     {sections.map((section, index) => (
                       <motion.button
                         key={section.id}
-                        className={`p-3 my-2 rounded-full transition-colors duration-200 ${
+                        className={`p-3 my-2 rounded-full transition-colors duration-200 outline-none ${
                           activeSection === section.id
                             ? 'bg-white/15'
                             : 'bg-transparent hover:bg-white/10'
