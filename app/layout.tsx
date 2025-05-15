@@ -35,7 +35,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'FEConf 2025',
     description: "Korea's largest frontend development conference",
-    images: ['https://2025.feconf.kr/metadata/fe2025_og.jpg'],
+    images: [
+      {
+        url: 'https://2025.feconf.kr/metadata/fe2025_og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FEConf 2025',
+      },
+    ],
   },
   generator: 'v0.dev',
 };
