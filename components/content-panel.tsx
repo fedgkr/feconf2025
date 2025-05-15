@@ -527,7 +527,7 @@ shadow-[0_0_30px_rgba(15,255,255,0.3)] relative outline outline-1 outline-white/
                   {activeSection === 'hero'
                     ? t(
                         '한국 최대 프론트엔드 개발 컨퍼런스, FEConf에서 다양한 기술과 트렌드를 경험하세요.',
-                        "Experience various technologies and trends at Korea's largest frontend development conference, FEConf."
+                        'Experience various technologies and trends at the largest frontend development conference in Korea, FEConf.'
                       )
                     : t(
                         currentSection.description.kr,

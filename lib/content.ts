@@ -23,7 +23,7 @@ export const sections: Section[] = [
     },
     description: {
       kr: '한국 최대 프론트엔드 개발 컨퍼런스, FEConf에 오신 것을 환영합니다. 최신 기술과 트렌드를 경험하세요.',
-      en: "Welcome to Korea's largest frontend development conference, FEConf. Experience the latest technologies and trends.",
+      en: 'Welcome to the largest frontend development conference in Korea, FEConf. Experience the latest technologies and trends.',
     },
     button: {
       kr: '이전 영상 보러가기',
@@ -68,7 +68,7 @@ export const sections: Section[] = [
     },
     description: {
       kr: '한국 최대 FE 컨퍼런스에서 기업 홍보, 인재 채용을 한번에',
-      en: "At Korea's largest FE conference, promote your company and recruit talent at the same time",
+      en: 'At the largest frontend development conference in Korea, promote your company and recruit talent at the same time',
     },
     button: {
       kr: '후원사 신청하기',

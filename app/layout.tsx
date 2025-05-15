@@ -28,13 +28,13 @@ const zenDots = Zen_Dots({
 
 export const metadata: Metadata = {
   title: 'FEConf 2025',
-  description: "Korea's largest frontend development conference",
+  description: 'The largest frontend development conference in Korea',
   icons: {
     icon: '/metadata/fe2025_fav.png',
   },
   openGraph: {
     title: 'FEConf 2025',
-    description: "Korea's largest frontend development conference",
+    description: 'The largest frontend development conference in Korea',
     images: [
       {
         url: 'https://2025.feconf.kr/metadata/fe2025_og.jpg',
