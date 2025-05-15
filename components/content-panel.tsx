@@ -919,8 +919,8 @@ function SponsorContent({
               style={{ fontWeight: '700' }}
             >
               {language === 'kr'
-                ? '후원 문의: sponsor@feconf.org'
-                : 'Sponsorship inquiry: sponsor@feconf.org'}
+                ? '후원 문의: feconf.kr@gmail.com'
+                : 'Sponsorship inquiry: feconf.kr@gmail.com'}
             </div>
           </div>
 
