@@ -845,6 +845,7 @@ function SponsorContent({
     { src: '/images/sponsors/sponsor1.png', alt: 'Sponsor 1' },
     { src: '/images/sponsors/sponsor2.png', alt: 'Sponsor 2' },
     { src: '/images/sponsors/sponsor3.png', alt: 'Sponsor 3' },
+    { src: '/images/sponsors/soomgo.png', alt: 'Soomgo' },
     { src: '/images/sponsors/hyundai.png', alt: 'Hyundai' },
     { src: '/images/sponsors/googlecloud.png', alt: 'Google Cloud' },
   ]);
@@ -958,11 +959,11 @@ function SponsorContent({
             <motion.div
               className="flex items-center"
               animate={{
-                x: [0, -1500],
+                x: [0, -1800],
               }}
               transition={{
                 x: {
-                  duration: 20,
+                  duration: 25,
                   repeat: Number.POSITIVE_INFINITY,
                   repeatType: 'loop',
                   ease: 'linear',
@@ -972,14 +973,14 @@ function SponsorContent({
               {sponsorLogos.map((logo, index) => (
                 <div
                   key={`logo-${index}`}
-                  className="mx-6 flex-shrink-0 bg-white/5 rounded-lg p-4 flex items-center justify-center"
-                  style={{ width: '180px', height: '100px' }}
+                  className="mx-4 flex-shrink-0 bg-white/5 rounded-lg p-4 flex items-center justify-center"
+                  style={{ width: '160px', height: '90px' }}
                 >
                   <img
                     src={logo.src || '/placeholder.svg'}
                     alt={logo.alt}
                     className="max-w-full max-h-full object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
-                    style={{ maxHeight: '70px' }}
+                    style={{ maxHeight: '60px' }}
                   />
                 </div>
               ))}
@@ -988,14 +989,14 @@ function SponsorContent({
               {sponsorLogos.map((logo, index) => (
                 <div
                   key={`logo-dup-${index}`}
-                  className="mx-6 flex-shrink-0 bg-white/5 rounded-lg p-4 flex items-center justify-center"
-                  style={{ width: '180px', height: '100px' }}
+                  className="mx-4 flex-shrink-0 bg-white/5 rounded-lg p-4 flex items-center justify-center"
+                  style={{ width: '160px', height: '90px' }}
                 >
                   <img
                     src={logo.src || '/placeholder.svg'}
                     alt={logo.alt}
                     className="max-w-full max-h-full object-contain filter brightness-0 invert opacity-70 hover:opacity-100 transition-opacity"
-                    style={{ maxHeight: '70px' }}
+                    style={{ maxHeight: '60px' }}
                   />
                 </div>
               ))}
