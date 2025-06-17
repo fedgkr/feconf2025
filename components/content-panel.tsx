@@ -1011,7 +1011,7 @@ function SponsorContent({
             style={{ marginTop: '35px' }}
           >
             <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdIN9Yum9yOTNxq64uDVKUlxtQMZCPUmvxhQ_3YUGdsFtcVQQ/viewform?usp=sharing"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSeFy4RZf2oGpSkHzdJ1OBxsC8yHQcFeMSSPS_yODk46rwwLSQ/viewform"
               target="_blank"
               rel="noopener noreferrer"
               style={{ textDecoration: 'none' }}
