@@ -46,7 +46,7 @@ export default function PanelTalkCard({ theme }: PanelTalkCardProps) {
         role: { kr: "FEConf Organizer", en: "FEConf Organizer" },
         company: { kr: "Moderator", en: "Moderator" },
         description: {
-          kr: "내 생각을 세상에 실현시키고 싶어 코딩을 시작했습니다. 웹 프론트엔드 개발을 주로 하며 영역을 넓혀 나가는 것을 지향합니다. 글을 쓰고 공유합니다. 전문적으로 배우지 않았지만 향기로운 글을 쓰기 위해 퇴고합니다. 주로 개인적인 생각을 정리하며 가끔 웹을 소재로 쓰곤 합니다. 누군가에게 도움이 되길 바라며 9년째 블로그를 운영하고 있습니다. 지속 가능성을 고민합니다. 소프트웨어 설계 뿐만 아니라 프로세스, 시스템, 문화에 대해 고민하곤 합니다. 개발 생태계에도 관심이 많아 여러 행사에서 발표를 통해 경험을 공유했으며 프론트엔드 개발 컨퍼런스, FEConf를 9년동안 운영하고 있습니다.",
+          kr: "내 생각을 세상에 실현시키고 싶어 코딩을 시작했습니다. 웹 프론트엔드 개발을 주로 하며 영역을 넓혀 나가는 것을 지향합니다. 글을 쓰고 공유합니다. 전문적으로 배우지 않았지만 향기로운 글을 쓰기 위해 퇴고합니다. 주로 개인적인 생각을 정리하며 가끔 웹을 소재로 쓰곤 합니다. 누군가에게 도움이 되길 바라며 9년째 블로그를 운영하고 있습니다. 지속 가능성을 고민합니다. 소프트웨어 설계 뿐만 아니라 프로세스, 시스템, 문화에 대해 고민하곤 합니다. 개발 생태계에도 관심이 많아 여러 행사에서 발표를 통해 경험을 공유했으며 프론트엔드 개발 컨퍼런스, FEConf를 9년동안 운영하고 있으며 jbee.io 블로그를 운영하고 있습니다.",
           en: "I started coding because I wanted to bring my ideas to life. I primarily focus on web frontend development and aim to expand my expertise. I write and share. Although not professionally trained, I revise my writing to make it more impactful. I mostly organize my personal thoughts and occasionally write about web-related topics. Hoping to help someone, I've been running a blog for 9 years. I contemplate sustainability, not just in software design but also in processes, systems, and culture. I'm also very interested in the development ecosystem, have shared my experiences through presentations at various events, and have been organizing the frontend development conference, FEConf, for 9 years.",
         },
         image: "/images/panelists/han-jaeyeop.png",
@@ -55,8 +55,9 @@ export default function PanelTalkCard({ theme }: PanelTalkCardProps) {
           github: "https://github.com/jbee37142",
         },
         pastExperiences: [
-          { kr: "전) 당근 광고실 Frontend Developer", en: "(Former) Karrot Ads Frontend Developer" },
+          { kr: "전) 당근 Frontend Developer", en: "(Former) Karrot Frontend Developer" },
           { kr: "전) 토스페이먼츠 프론트엔드 챕터 리드", en: "(Former) Toss Payments Frontend Chapter Lead" },
+          { kr: "전) LINE Financial Frontend Developer", en: "(Former) LINE Financial Frontend Developer" },
           { kr: "전) NAVER Frontend Developer", en: "(Former) NAVER Frontend Developer" },
         ],
         isModerator: true,
@@ -117,26 +118,34 @@ export default function PanelTalkCard({ theme }: PanelTalkCardProps) {
     () => [
       {
         id: 1,
-        title: { kr: "좋은 프론트엔드 조직이란 무엇일까?", en: "What makes a good frontend organization?" },
+        title: { kr: "어느 방향으로 성장해야 할까?", en: "In which direction should we grow?" },
         description: {
-          kr: "좋은 프론트엔드 조직을 만들기 위한 핵심 요소들과 실제 경험을 공유합니다. 팀 구조, 문화, 기술 스택 선택 등 다양한 측면을 다룹니다.",
-          en: "Sharing key elements and real experiences in building a good frontend organization. Covers various aspects like team structure, culture, and technology stack choices.",
+          kr: "프론트엔드 개발자로서의 성장 방향성과 커리어 패스에 대한 심도 있는 논의를 진행합니다. 기술 심화, 매니지먼트, 스페셜리스트 등 다양한 경로를 탐색합니다. AI 시대를 맞이하여 프론트엔드 개발자로서 어떤 역할을 담당해야 할지 어떻게 진화해나가야 할지 아니면 이대로도 문제 없는지 토론합니다.",
+          en: "In-depth discussion on the growth direction and career path for frontend developers. Exploring various paths such as technical deepening, management, and specialist roles. Discussing what role frontend developers should take on in the AI era, how to evolve, or whether it's okay to stay as is.",
         },
       },
       {
         id: 2,
-        title: { kr: "리더로서 겪는 도전과 배움은?", en: "What are the challenges and learnings as a leader?" },
+        title: { kr: "리더가 생각하는 좋은 동료, 좋은 팔로워는 어떤 모습일까?", en: "What makes a good colleague, a good follower?" },
         description: {
-          kr: "프론트엔드 리더로서 마주하는 다양한 도전 과제들과 이를 통해 얻은 교훈, 그리고 성장 스토리를 나눕니다.",
-          en: "Sharing various challenges faced as a frontend leader, lessons learned, and growth stories.",
+          kr: "리더가 생각하는 좋은 동료, 좋은 팔로워의 모습에 대해 이야기 나눕니다. 다소 추상적일 수 있는 주제를 구체적인 경험을 중심으로 이야기를 나눕니다. 지금의 리더들은 좋은 팔로워 였을지, 어떤 아쉬움이 남는지도 함께 이야기 할 수 있을 것 같습니다.",
+          en: "Discussing the ideal characteristics of a good colleague and a good follower. While this topic may be somewhat abstract, we'll discuss it concretely through shared experiences. It might also be interesting to discuss whether the current leaders were good followers and what they might have missed.",
         },
       },
       {
         id: 3,
-        title: { kr: "어느 방향으로 성장해야 할까?", en: "In which direction should we grow?" },
+        title: { kr: "리더로서 겪는 도전과 배움은 무엇이 있나? 매니저로 가면 커리어 꼬이는거 아닌가?", en: "What are the challenges and learnings as a leader? Will my career be ruined if I become a manager?" },
         description: {
-          kr: "프론트엔드 개발자로서의 성장 방향성과 커리어 패스에 대한 심도 있는 논의를 진행합니다. 기술 심화, 매니지먼트, 스페셜리스트 등 다양한 경로를 탐색합니다.",
-          en: "In-depth discussion on the growth direction and career path for frontend developers. Exploring various paths such as technical deepening, management, and specialist roles.",
+          kr: "리더로서 마주하는 다양한 도전 과제들과 이를 통해 얻은 교훈, 그리고 성장 스토리를 나눕니다. 한국에는 특히 매니저가 되면 더이상 개발을 하지 않게 되게 되면서 몸값이 떨어지거나 커리어가 꼬인 다는 인식이 팽배한 것 같습니다. 실제로 리더 역할을 수행하면서 느꼈던 점들을 이야기 합니다.",
+          en: "Discussing various challenges faced as a leader, lessons learned, and growth stories. In Korea, particularly, there is a widespread perception that becoming a manager means no longer doing development, which leads to a decrease in value or a ruined career. I'll share my experiences as a leader.",
+        },
+      },
+      {
+        id: 4,
+        title: { kr: "좋은 프론트엔드 조직이란 무엇일까? 우리 팀도 함께 성장할 수 있을까?", en: "What makes a good frontend organization? Can we grow together as a team?" },
+        description: {
+          kr: "좋은 프론트엔드 조직을 만들기 위한 핵심 요소들과 실제 경험을 공유합니다. 팀 구조, 문화, 기술 스택 선택 등 다양한 측면을 다룹니다. 우리 팀도 함께 성장할 수 있을까? 라는 질문에 대해 이야기 나눕니다. 프론트엔드 개발자로서 조직을 만들고 관리하는 경험을 공유합니다.",
+          en: "Sharing key elements and real experiences in building a good frontend organization. Covers various aspects like team structure, culture, and technology stack choices. Discussing whether we can grow together as a team. Sharing experiences in building and managing a frontend organization.",
         },
       },
     ],
@@ -145,20 +154,36 @@ export default function PanelTalkCard({ theme }: PanelTalkCardProps) {
 
   const faqItems = useMemo(
     () => [
-      {
+      {  
         id: 1,
-        question: { kr: "현장 추가 구매로 입장할 수 있나요?", en: "Can I buy a ticket on-site?" },
+        question: { kr: "어떤 내용을 주로 다루나요?", en: "What topics do you mainly cover?" },
         answer: {
-          kr: "사전에 정해진 인원에 대해서만 제공하는 세션이기 때문에 현장 구매로 참여하기는 어렵습니다.",
+          kr: "신청과 함께 받은 질문을 기반으로 주제와 질문들을 정리할 예정이며 각 패널들의 깊이있는 경험을 바탕으로 고민한 내용들을 전달하려고 합니다.",
           en: "This session is provided only for a pre-determined number of people, so on-site purchase is not available.",
         },
       },
-      {
+      {  
         id: 2,
+        question: { kr: "현장에서 질문이 가능한가요?", en: "What topics do you mainly cover?" },
+        answer: {
+          kr: "패널 토크에 할당한 시간은 2시간 정도이며 현장의 분위기에 맞춰 유동적으로 진행할 예정입니다. 깊이 있는 토론을 나눌 수 있는 좋은 질문이 있다면 그 주제만을 다룰 수도 있고 그렇지 않다면 사전에 제출된 내용을 중심으로 토크를 진행할 예정입니다.",
+          en: "We’ve allocated about two hours for the panel talk, and it will be conducted flexibly depending on the atmosphere at the venue. If there are great questions that lead to in-depth discussion, we may focus solely on those topics. Otherwise, the talk will center around the questions submitted in advance.",
+        },
+      },
+      {
+        id: 3,
         question: { kr: "온라인으로 패널 토크 내용을 볼 수 있나요?", en: "Can I watch the panel talk online?" },
         answer: {
           kr: "본 세션은 오프라인에서만 이뤄지며 온라인으로 제공되지 않습니다.",
           en: "This session is offline-only and will not be available online.",
+        },
+      },
+      {  
+        id: 4,
+        question: { kr: "현장 추가 구매로 입장할 수 있나요?", en: "Can I buy a ticket on-site?" },
+        answer: {
+          kr: "사전에 정해진 인원에 대해서만 제공하는 세션이기 때문에 현장 구매로 참여하기는 어렵습니다.",
+          en: "This session is provided only for a pre-determined number of people, so on-site purchase is not available.",
         },
       },
     ],
