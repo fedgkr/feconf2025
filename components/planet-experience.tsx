@@ -269,7 +269,10 @@ const PlanetExperience = memo(
             depth: true,
             alpha: false, // 알파 채널 비활성화
           }}
-          style={{ pointerEvents: "auto" }}
+           style={{
+            pointerEvents: isMobile ? "none" : "auto",
+            touchAction: isMobile ? "none" : "auto",
+          }}
         >
           <color attach="background" args={["#000"]} />
           <fog attach="fog" args={["#000", 0, 40]} />

@@ -18,7 +18,7 @@ export default function CodeOfConductCard({ theme }: CodeOfConductCardProps) {
         en: "Diversity",
       },
       content: {
-        kr: "FEConf는 개개인의 ���체성과 개성 및 취향을 존중합니다. 하지만 성별, 성 정체성, 외모, 인종, 종교, 지역, 장애, 나이, 국가, 학자 등에 대한 험오와 폭력은 어떤 방식이라도 허용하지 않습니다.",
+        kr: "FEConf는 개개인의 정체성과 개성 및 취향을 존중합니다. 하지만 성별, 성 정체성, 외모, 인종, 종교, 지역, 장애, 나이, 국가, 학자 등에 대한 험오와 폭력은 어떤 방식이라도 허용하지 않습니다.",
         en: "FEConf respects individual identity, personality, and preferences. However, hatred and violence based on gender, sexual identity, appearance, race, religion, region, disability, age, nationality, academic background, etc. are not tolerated in any form.",
       },
     },

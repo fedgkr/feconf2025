@@ -42,11 +42,6 @@ export default function NetworkingCard({ theme }: NetworkingCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.42, delay: 0.21 }}
-            whileHover={{
-              y: -8,
-              boxShadow: "0 20px 40px rgba(34, 197, 94, 0.15), 0 0 30px rgba(34, 197, 94, 0.1)", // 청녹색 그림자
-              transition: { duration: 0.21, ease: "easeOut" },
-            }}
             className="px-6 md:px-8 py-10 rounded-xl bg-gray-900/30 backdrop-blur-md border border-gray-800 w-full cursor-pointer"
           >
             {/* Title with Logo */}
@@ -142,7 +137,7 @@ export default function NetworkingCard({ theme }: NetworkingCardProps) {
                   )
                 }
               >
-                {t("참여하기", "Join Event")}
+                {t("참여 가이드", "Participation Guide")}
               </Button>
             </div>
           </motion.div>
@@ -153,11 +148,6 @@ export default function NetworkingCard({ theme }: NetworkingCardProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.42, delay: 0.21 }}
-            whileHover={{
-              y: -8,
-              boxShadow: "0 20px 40px rgba(59, 130, 246, 0.15), 0 0 30px rgba(59, 130, 246, 0.1)", // 파란색 그림자
-              transition: { duration: 0.21, ease: "easeOut" },
-            }}
             className="px-6 md:px-8 py-10 rounded-xl bg-gray-900/30 backdrop-blur-md border border-gray-800 w-full cursor-pointer"
           >
             {/* Title with Logo */}
@@ -253,7 +243,7 @@ export default function NetworkingCard({ theme }: NetworkingCardProps) {
                   )
                 }
               >
-                {t("신청하기", "Apply")}
+                {t("참여 가이드", "Participation Guide")}
               </Button>
             </div>
           </motion.div>
