@@ -37,7 +37,7 @@
     "start": "next start",
     "lint": "next lint",
     "env": "touch out/.nojekyll && echo '2025.feconf.kr' >> out/CNAME",
-    "push": "push-dir --dir=out --branch=gh-pages --verbose",
+    "push": "push-dir --dir=out --branch=gh-pages --cleanup --verbose",
     "deploy": "npm run build && npm run env && npm run push"
   },
   "dependencies": {
@@ -72,7 +72,6 @@
     "@radix-ui/react-tooltip": "1.1.6",
     "@react-three/drei": "^9.92.7",
     "@react-three/fiber": "^8.15.12",
-    "three": "^0.160.0",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -101,7 +100,7 @@
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
-    
+    "three": "^0.160.0",
     "vaul": "^0.9.6",
     "zod": "^3.24.1"
   },
@@ -114,6 +113,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
+    "push-dir": "^0.4.1",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
