@@ -95,12 +95,14 @@ const CameraController = memo(
     isIntroActive,
     scrollProgress,
     onSectionReturn,
+    isMobile,
   }: {
     activeSection: string | null
     sectionPositions: Record<string, THREE.Vector3>
     isIntroActive: boolean
     scrollProgress: number
     onSectionReturn?: () => void
+    isMobile: boolean
   }) => {
     const { camera } = useThree()
     const controlsRef = useRef<any>(null)
@@ -108,7 +110,7 @@ const CameraController = memo(
 
     useEffect(() => {
       if (controlsRef.current) {
-        controlsRef.current.enabled = !isIntroActive && !activeSection
+        controlsRef.current.enabled = !isIntroActive && !activeSection && !isMobile
       }
       if (previousActiveSection.current !== null && activeSection === null && onSectionReturn) {
         onSectionReturn()
@@ -150,7 +152,7 @@ const CameraController = memo(
         camera.position.set(0, 0, 20) // 25 -> 20으로 변경
         camera.lookAt(0, 0, 0)
       }
-    }, [activeSection, sectionPositions, isIntroActive, scrollProgress, onSectionReturn, camera])
+    }, [activeSection, sectionPositions, isIntroActive, scrollProgress, onSectionReturn, camera, isMobile])
 
     useEffect(() => {
       return () => {
@@ -165,11 +167,12 @@ const CameraController = memo(
         enablePan={false}
         minDistance={20} // 25 -> 20으로 변경
         maxDistance={20} // 25 -> 20으로 변경
-        autoRotate={!isIntroActive && !activeSection}
+        autoRotate={!isIntroActive && !activeSection && !isMobile}
         autoRotateSpeed={0.15} // 속도 절반으로 감소
         rotateSpeed={0.3} // 속도 감소
         dampingFactor={0.05} // 댐핑 감소
         enableDamping
+        enabled={!isMobile} // 모바일에서는 컨트롤 비활성화
       />
     )
   },
@@ -194,7 +197,10 @@ const PlanetExperience = memo(
       const [showAsteroids, setShowAsteroids] = useState(false)
 
       useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768)
+        const checkMobile = () => {
+          const mobile = window.innerWidth < 768 || "ontouchstart" in window
+          setIsMobile(mobile)
+        }
         checkMobile()
         window.addEventListener("resize", checkMobile)
         return () => window.removeEventListener("resize", checkMobile)
@@ -269,8 +275,8 @@ const PlanetExperience = memo(
             depth: true,
             alpha: false, // 알파 채널 비활성화
           }}
-           style={{
-            pointerEvents: isMobile ? "none" : "auto",
+          style={{
+            pointerEvents: isMobile ? "none" : "auto", // 모바일에서는 pointer events 비활성화
             touchAction: isMobile ? "none" : "auto",
           }}
         >
@@ -298,6 +304,7 @@ const PlanetExperience = memo(
             isIntroActive={isIntroActive}
             scrollProgress={scrollProgress}
             onSectionReturn={handleSectionReturn}
+            isMobile={isMobile}
           />
         </Canvas>
       )
