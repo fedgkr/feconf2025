@@ -295,7 +295,7 @@ export default function TicketCard({ theme }: TicketCardProps) {
       <motion.div className="mt-8 p-6 md:p-6 rounded-xl bg-gray-900/30 backdrop-blur-md border border-gray-800 max-w-4xl mx-auto">
         <h4 className="font-semibold mb-3 text-white/90">{t("주의사항", "Important Notes")}</h4>
         <ul className="text-sm text-gray-300 space-y-2">
-          <li>• {t("티켓 환불은 행사일 기준 10일 전까지 가능합니다.", "Ticket refunds are available up to 10 days before the event date.")}</li>
+          <li>• {t("티켓 환불은 행사일 기준 7일 전까지 가능합니다.", "Ticket refunds are available up to 7 days before the event date.")}</li>
           <li>• {t("골드 티켓은 한정 수량으로 판매됩니다.", "Gold tickets are sold in limited quantities.")}</li>
           <li>
             •{" "}
