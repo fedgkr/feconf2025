@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222.2 84% 0%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -30,7 +40,7 @@
 
   .dark {
     --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --foreground: 210 40% 60%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
@@ -54,34 +64,67 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
+
+  html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-sans);
+    font-family: "Pretendard", var(--font-sans);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000;
+    color: #fff;
+    position: relative;
+    word-break: keep-all;
   }
-}
 
-html,
-body {
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #000;
-  color: #fff;
-  cursor: none; /* 기본 커서 숨기기 */
-  font-family: var(--font-sans);
-}
+  #__next {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000;
+  }
 
-/* 모든 클릭 가능한 요소에 대해 커서 숨기기 */
-a,
-button,
-input,
-select,
-textarea,
-[role="button"] {
-  cursor: none;
+  /* Apply keep-all to all text elements */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  div,
+  button,
+  a,
+  label,
+  li {
+    word-break: keep-all;
+  }
+
+  /* 성능 최적화를 위한 GPU 가속 */
+  .motion-safe {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* 애니메이션 성능 최적화 */
+  .animate-optimized {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
 }
 
 /* Futuristic scrollbar */
@@ -132,7 +175,7 @@ textarea,
 }
 
 .animate-spin-slow {
-  animation: spin-slow 4s linear infinite;
+  animation: spin-slow 60s linear infinite;
 }
 
 /* Custom scrollbar for the speaker timeline */
@@ -151,4 +194,21 @@ textarea,
 
 .space-y-6::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+/* 성능 최적화를 위한 추가 스타일 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 3D 변환 최적화 */
+.transform-gpu {
+  transform: translateZ(0);
+  will-change: transform;
 }

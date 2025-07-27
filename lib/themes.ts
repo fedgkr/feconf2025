@@ -24,7 +24,7 @@ export const themes: Theme[] = [
     glowColor: "#4FC3F7", // 원래 색상 유지
     orbitColor: "#BBDEFB",
     starColor: "#E3F2FD",
-    accentColor: "#0288D1",
+    accentColor: "#055BB8", // 0288D1에서 055BB8로 변경
     uiColor: "#29B6F6",
     description: "A serene blue theme inspired by Earth viewed from space",
     gradientCenter: "#2867F9",

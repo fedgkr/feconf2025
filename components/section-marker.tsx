@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useMemo, useEffect } from "react"
+import { useState, useRef, useMemo, useEffect, memo, useCallback } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Html, Sphere } from "@react-three/drei"
 import * as THREE from "three"
@@ -8,12 +8,10 @@ import { useLanguage } from "./language-provider"
 import type { Section } from "@/lib/content"
 import { motion, useAnimation } from "framer-motion"
 
-// 섹션 인덱스에 따른 숫자 반환 (01, 02, 03, 04)
 const getSectionNumber = (index: number) => {
   return `${(index + 1).toString().padStart(2, "0")}`
 }
 
-// 컴포넌트 인터페이스에 index 속성 추가
 interface OrbitConfig {
   radius: number
   tiltX: number
@@ -29,233 +27,279 @@ interface SectionMarkerProps {
   onClick: () => void
   isActive: boolean
   anyActive: boolean
-  orbitConfig: OrbitConfig
-  index?: number // 섹션 인덱스 추가
-  isVisible?: boolean // 레이블 표시 여부
-  updatePosition?: (position: THREE.Vector3) => void // 위치 업데이트 콜백
+  orbitConfig?: OrbitConfig
+  index?: number
+  isVisible?: boolean
+  updatePosition?: (position: THREE.Vector3) => void
+  scrollProgress?: number
 }
 
-// SectionMarker 함수 매개변수에 index 추가
-export default function SectionMarker({
-  section,
-  onClick,
-  isActive,
-  anyActive,
-  orbitConfig,
-  index = 0,
-  isVisible = true, // 기본값은 표시
-  updatePosition,
-}: SectionMarkerProps) {
-  const [hovered, setHovered] = useState(false)
-  const { t, language } = useLanguage()
-  const markerRef = useRef<THREE.Mesh>(null)
-  const pulseRef = useRef<THREE.Mesh>(null)
-  const ringRef = useRef<THREE.Group>(null)
-  const glowRef = useRef<THREE.PointLight>(null)
-  const orbitRef = useRef<THREE.Group>(null)
-  const labelGroupRef = useRef<THREE.Group>(null)
-  const controls = useAnimation()
+const DEFAULT_ORBIT_CONFIG: OrbitConfig = {
+  radius: 5,
+  tiltX: 0,
+  tiltY: 0,
+  tiltZ: 0,
+  speed: 0.02,
+  startAngle: 0,
+  color: "#4FC3F7",
+}
 
-  // 레이블 투명도 애니메이션을 위한 상태
-  const [labelVisible, setLabelVisible] = useState(false)
+const SectionMarker = memo(
+  ({
+    section,
+    onClick,
+    isActive,
+    anyActive,
+    orbitConfig = DEFAULT_ORBIT_CONFIG,
+    index = 0,
+    isVisible = true,
+    updatePosition,
+    scrollProgress = 0,
+  }: SectionMarkerProps) => {
+    const [hovered, setHovered] = useState(false)
+    const { t, language } = useLanguage()
+    const markerRef = useRef<THREE.Mesh>(null)
+    const pulseRef = useRef<THREE.Mesh>(null)
+    const ringRef = useRef<THREE.Group>(null)
+    const glowRef = useRef<THREE.PointLight>(null)
+    const orbitRef = useRef<THREE.Group>(null)
+    const labelGroupRef = useRef<THREE.Group>(null)
+    const controls = useAnimation()
 
-  // isVisible이 변경될 때 애니메이션 적용
-  useEffect(() => {
-    if (isVisible) {
-      controls.start({
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        transition: { duration: 0.5 },
-      })
-    } else {
-      controls.start({
-        opacity: 0,
-        scale: 0.8,
-        y: -10,
-        transition: { duration: 0.3 },
-      })
-    }
-  }, [isVisible, controls])
+    const [labelVisible, setLabelVisible] = useState(false)
 
-  // 궤도 경로를 위한 점들 생성
-  const orbitPoints = useMemo(() => {
-    const points = []
-    const segments = 128
+    // Calculate opacity based on scroll progress
+    const calculateOpacity = useCallback((progress: number) => {
+      if (progress < 0.2) return 1
+      if (progress > 0.4) return 0
+      // Linear interpolation between 0.2 and 0.4
+      return 1 - (progress - 0.2) / (0.4 - 0.2)
+    }, [])
 
-    for (let i = 0; i <= segments; i++) {
-      const angle = (i / segments) * Math.PI * 2
-      const x = Math.cos(angle) * orbitConfig.radius
-      const z = Math.sin(angle) * orbitConfig.radius
-      points.push(new THREE.Vector3(x, 0, z))
-    }
+    const markerOpacity = calculateOpacity(scrollProgress)
 
-    return points
-  }, [orbitConfig.radius])
-
-  // 궤도 라인 생성
-  const orbitLine = useMemo(() => {
-    const geometry = new THREE.BufferGeometry().setFromPoints(orbitPoints)
-    return geometry
-  }, [orbitPoints])
-
-  // 마커 색상 계산
-  const markerColor = isActive ? "#FFFFFF" : hovered ? "#FFFFFF" : orbitConfig.color
-  const glowIntensity = isActive ? 2.5 : hovered ? 2 : 1.5
-
-  // 마커 위치 및 애니메이션 업데이트
-  useFrame(({ clock }) => {
-    if (orbitRef.current) {
-      // 궤도 기울기 적용
-      orbitRef.current.rotation.x = orbitConfig.tiltX
-      orbitRef.current.rotation.y = orbitConfig.tiltY
-      orbitRef.current.rotation.z = orbitConfig.tiltZ
-    }
-
-    if (markerRef.current) {
-      // 궤도를 따라 마커 이동
-      const time = clock.getElapsedTime() * orbitConfig.speed + orbitConfig.startAngle
-      const x = Math.cos(time) * orbitConfig.radius
-      const z = Math.sin(time) * orbitConfig.radius
-      markerRef.current.position.x = x
-      markerRef.current.position.z = z
-
-      // 마커가 항상 중앙을 바라보도록 설정
-      markerRef.current.lookAt(0, 0, 0)
-
-      // renderOrder 설정으로 마커가 궤도 위에 보이도록 함
-      markerRef.current.renderOrder = 1
-
-      // 마커 위치 업데이트 콜백 호출
-      if (updatePosition) {
-        updatePosition(markerRef.current.position)
+    useEffect(() => {
+      if (isVisible) {
+        controls.start({
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          transition: { duration: 0.3 }, // 애니메이션 시간 단축
+        })
+      } else {
+        controls.start({
+          opacity: 0,
+          scale: 0.8,
+          y: -10,
+          transition: { duration: 0.2 }, // 애니메이션 시간 단축
+        })
       }
-    }
+    }, [isVisible, controls])
 
-    if (pulseRef.current && markerRef.current) {
-      // 펄스 효과 위치 동기화
-      pulseRef.current.position.copy(markerRef.current.position)
+    // 궤도 경로 최적화 - 세그먼트 수 감소
+    const orbitPoints = useMemo(() => {
+      const points = []
+      const segments = 64 // 128 -> 64로 감소
 
-      // 펄스 효과 크기 애니메이션
-      const scale =
-        hovered || isActive
-          ? 1 + Math.sin(clock.getElapsedTime() * 4) * 0.2
-          : 1 + Math.sin(clock.getElapsedTime() * 2) * 0.1
+      for (let i = 0; i <= segments; i++) {
+        const angle = (i / segments) * Math.PI * 2
+        const x = Math.cos(angle) * orbitConfig.radius
+        const z = Math.sin(angle) * orbitConfig.radius
+        points.push(new THREE.Vector3(x, 0, z))
+      }
 
-      pulseRef.current.scale.setScalar(scale)
+      return points
+    }, [orbitConfig.radius])
 
-      // renderOrder 설정
-      pulseRef.current.renderOrder = 1
-    }
+    const orbitLine = useMemo(() => {
+      const geometry = new THREE.BufferGeometry().setFromPoints(orbitPoints)
+      return geometry
+    }, [orbitPoints])
 
-    if (ringRef.current && markerRef.current) {
-      // 링 위치 동기화
-      ringRef.current.position.copy(markerRef.current.position)
+    const markerColor = isActive ? "#FFFFFF" : hovered ? "#FFFFFF" : orbitConfig.color
+    const glowIntensity = isActive ? 2 : hovered ? 1.5 : 1 // 강도 감소
 
-      // 링 회전 애니메이션
-      ringRef.current.rotation.z += 0.01
-      ringRef.current.rotation.x += 0.005
+    // 프레임 카운터로 성능 최적화
+    const frameCount = useRef(0)
+    useFrame(({ clock }) => {
+      frameCount.current++
+      const shouldUpdate = frameCount.current % 2 === 0 // 매 2프레임마다 업데이트
 
-      // renderOrder 설정
-      ringRef.current.renderOrder = 1
-    }
+      if (orbitRef.current) {
+        orbitRef.current.rotation.x = orbitConfig.tiltX
+        orbitRef.current.rotation.y = orbitConfig.tiltY
+        orbitRef.current.rotation.z = orbitConfig.tiltZ
+      }
 
-    // 발광 효과 애니메이션
-    if (glowRef.current && markerRef.current) {
-      // 발광 위치 동기화
-      glowRef.current.position.copy(markerRef.current.position)
+      if (markerRef.current && shouldUpdate) {
+        const time = clock.getElapsedTime() * orbitConfig.speed + orbitConfig.startAngle
+        const x = Math.cos(time) * orbitConfig.radius
+        const z = Math.sin(time) * orbitConfig.radius
+        markerRef.current.position.x = x
+        markerRef.current.position.z = z
 
-      // 발광 강도 애니메이션
-      const baseIntensity = isActive ? 2.5 : hovered ? 2 : 1.5
-      glowRef.current.intensity = baseIntensity + Math.sin(clock.getElapsedTime() * 3) * 0.5
-    }
+        markerRef.current.lookAt(0, 0, 0)
+        markerRef.current.renderOrder = 1
 
-    // 라벨 그룹 위치 동기화
-    if (labelGroupRef.current && markerRef.current) {
-      labelGroupRef.current.position.copy(markerRef.current.position)
-      // 라벨이 항상 카메라를 향하도록 설정
-      labelGroupRef.current.lookAt(0, 0, 0)
-    }
-  })
+        if (updatePosition) {
+          updatePosition(markerRef.current.position)
+        }
+      }
 
-  return (
-    <group ref={orbitRef}>
-      {/* 궤도 경로 시각화 - 굵기 증가 */}
-      <line geometry={orbitLine} renderOrder={0}>
-        <lineDashedMaterial
-          color="#4FC3F7"
-          dashSize={0.5}
-          gapSize={0.3}
-          opacity={0.3}
-          transparent
-          linewidth={2} // 1에서 2로 증가
-          depthWrite={false}
-        />
-      </line>
+      if (pulseRef.current && markerRef.current && shouldUpdate) {
+        pulseRef.current.position.copy(markerRef.current.position)
 
-      {/* 마커 본체 */}
-      <Sphere
-        ref={markerRef}
-        args={[0.25, 16, 16]}
-        onClick={onClick}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
-        renderOrder={1}
-      >
-        <meshBasicMaterial color={markerColor} transparent opacity={0.9} />
-      </Sphere>
+        const scale =
+          hovered || isActive
+            ? 1 + Math.sin(clock.getElapsedTime() * 3) * 0.15 // 펄스 강도 감소
+            : 1 + Math.sin(clock.getElapsedTime() * 1.5) * 0.08 // 펄스 강도 감소
 
-      {/* 펄스 효과 */}
-      <Sphere ref={pulseRef} args={[0.32, 16, 16]} renderOrder={1}>
-        <meshBasicMaterial color={markerColor} transparent opacity={0.3} blending={THREE.AdditiveBlending} />
-      </Sphere>
+        pulseRef.current.scale.setScalar(scale)
+        pulseRef.current.renderOrder = 1
+      }
 
-      {/* 회전하는 링 - 색상을 항상 화이트로 설정 */}
-      <group ref={ringRef} renderOrder={1}>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[0.35, 0.38, 32]} />
-          <meshBasicMaterial color="#FFFFFF" transparent opacity={0.6} side={THREE.DoubleSide} />
-        </mesh>
-        <mesh rotation={[0, Math.PI / 2, 0]}>
-          <ringGeometry args={[0.3, 0.33, 32]} />
-          <meshBasicMaterial color="#FFFFFF" transparent opacity={0.4} side={THREE.DoubleSide} />
-        </mesh>
+      if (ringRef.current && markerRef.current && shouldUpdate) {
+        ringRef.current.position.copy(markerRef.current.position)
+        ringRef.current.rotation.z += 0.005 // 회전 속도 감소
+        ringRef.current.rotation.x += 0.003 // 회전 속도 감소
+        ringRef.current.renderOrder = 1
+      }
+
+      if (glowRef.current && markerRef.current && shouldUpdate) {
+        glowRef.current.position.copy(markerRef.current.position)
+        const baseIntensity = isActive ? 2 : hovered ? 1.5 : 1 // 강도 감소
+        glowRef.current.intensity = baseIntensity + Math.sin(clock.getElapsedTime() * 2) * 0.3 // 펄스 강도 감소
+      }
+
+      if (labelGroupRef.current && markerRef.current) {
+        labelGroupRef.current.position.copy(markerRef.current.position)
+        labelGroupRef.current.lookAt(0, 0, 0)
+      }
+    })
+
+    const handlePointerOver = useCallback(() => {
+      setHovered(true)
+      document.body.style.cursor = "pointer"
+    }, [])
+
+    const handlePointerOut = useCallback(() => {
+      setHovered(false)
+      document.body.style.cursor = "default"
+    }, [])
+
+    return (
+      <group ref={orbitRef} visible={markerOpacity > 0} renderOrder={1}>
+        <line geometry={orbitLine} renderOrder={0}>
+          <lineDashedMaterial
+            color="#4FC3F7"
+            dashSize={0.5}
+            gapSize={0.3}
+            opacity={0.2 * markerOpacity} // Apply scroll-based opacity
+            transparent
+            linewidth={1} // 라인 두께 감소
+            depthWrite={false}
+          />
+        </line>
+        <Sphere
+          ref={markerRef}
+          args={[0.2, 32, 32]} // 세그먼트 수 감소 (16,16 -> 8,8)
+          onClick={onClick}
+          onPointerOver={handlePointerOver}
+          onPointerOut={handlePointerOut}
+          renderOrder={1}
+        >
+          <meshBasicMaterial
+            color={markerColor}
+            transparent
+            opacity={0.15 * markerOpacity} // Apply scroll-based opacity
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
+          />
+        </Sphere>
+        <Sphere args={[0.15, 16, 16]} renderOrder={1}>
+          <meshBasicMaterial
+            color={markerColor}
+            transparent
+            opacity={0.6 * markerOpacity} // Apply scroll-based opacity
+            depthWrite={false}
+            blending={THREE.AdditiveBlending}
+          />
+        </Sphere>
+        <Sphere ref={pulseRef} args={[0.25, 16, 16]} renderOrder={1}>
+          {" "}
+          {/* 세그먼트 수 감소 */}
+          <meshBasicMaterial
+            color={markerColor}
+            transparent
+            opacity={0.2 * markerOpacity} // Apply scroll-based opacity
+            blending={THREE.AdditiveBlending}
+          />
+        </Sphere>
+        <group ref={ringRef} renderOrder={1}>
+          <mesh rotation={[Math.PI / 2, 0, 0]}>
+            <ringGeometry args={[0.3, 0.32, 16]} /> {/* 세그먼트 수 감소 (32 -> 16) */}
+            <meshBasicMaterial
+              color="#FFFFFF"
+              transparent
+              opacity={0.5 * markerOpacity} // Apply scroll-based opacity
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+          <mesh rotation={[0, Math.PI / 2, 0]}>
+            <ringGeometry args={[0.25, 0.27, 16]} /> {/* 세그먼트 수 감소 */}
+            <meshBasicMaterial
+              color="#FFFFFF"
+              transparent
+              opacity={0.3 * markerOpacity} // Apply scroll-based opacity
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        </group>
+        <pointLight
+          ref={glowRef}
+          color={markerColor}
+          intensity={glowIntensity * markerOpacity} // Apply scroll-based opacity
+          distance={2.5}
+        />{" "}
+        {/* 거리 감소 */}
+        {hovered && markerOpacity > 0 && (
+          <group ref={labelGroupRef}>
+            <Html position={[0, 0.8, 0]} center>
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.8 }}
+                animate={{ opacity: markerOpacity, y: 0, scale: 1 }} // Apply scroll-based opacity
+                exit={{ opacity: 0, y: -10, scale: 0.8 }}
+                transition={{ duration: 0.15 }} // 애니메이션 시간 단축
+                className={`px-4 py-2 rounded-full backdrop-blur-md cursor-pointer
+                ${
+                  isActive
+                    ? "bg-primary/40 shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+                    : "bg-black/40 border border-white/30"
+                }
+                transform-gpu
+                sm:text-base text-xs
+              `}
+                onClick={onClick}
+                style={{
+                  boxShadow: isActive ? "0 0 15px rgba(255,255,255,0.5), inset 0 0 5px rgba(255,255,255,0.3)" : "none",
+                  color: "#FFFFFF",
+                  touchAction: "auto",
+                }}
+              >
+                <span
+                  className={`whitespace-nowrap drop-shadow-md ${language === "kr" ? "font-normal" : "font-light"}`}
+                >
+                  <span className="mr-2 font-sans font-thin tracking-wider">{getSectionNumber(index)}</span>
+                  {t(section.title.kr, section.title.en)}
+                </span>
+              </motion.div>
+            </Html>
+          </group>
+        )}
       </group>
+    )
+  },
+)
 
-      {/* 발광 효과 - 색상은 마커 색상 유지 */}
-      <pointLight ref={glowRef} color={markerColor} intensity={glowIntensity} distance={3.0} />
-
-      {/* Label group that follows the marker */}
-      <group ref={labelGroupRef}>
-        {/* Always render label with animated opacity */}
-        <Html position={[0, 0.8, 0]} center>
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.8 }}
-            animate={isActive || hovered ? { opacity: 1, y: 0, scale: 1 } : controls}
-            transition={{ duration: 0.2 }}
-            className={`px-4 py-2 rounded-full backdrop-blur-md cursor-pointer
-              ${
-                isActive
-                  ? "bg-primary/40 shadow-[0_0_15px_rgba(255,255,255,0.5)]"
-                  : "bg-black/40 border border-white/30"
-              }
-              transform-gpu
-              sm:text-base text-xs
-            `}
-            onClick={onClick}
-            style={{
-              boxShadow: isActive ? "0 0 15px rgba(255,255,255,0.5), inset 0 0 5px rgba(255,255,255,0.3)" : "none",
-              color: "#FFFFFF",
-              touchAction: "auto", // 모바일에서 터치 이벤트 개선
-            }}
-          >
-            <span className={`whitespace-nowrap drop-shadow-md ${language === "kr" ? "font-normal" : "font-light"}`}>
-              <span className="mr-2 font-sans font-thin tracking-wider">{getSectionNumber(index)}</span>
-              {t(section.title.kr, section.title.en)}
-            </span>
-          </motion.div>
-        </Html>
-      </group>
-    </group>
-  )
-}
+SectionMarker.displayName = "SectionMarker"
+export default SectionMarker

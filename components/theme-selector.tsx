@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback } from "react"
 import { themes, generateRandomTheme, type Theme } from "@/lib/themes"
 import { adjustColor } from "@/lib/utils"
 import Image from "next/image"
@@ -13,20 +13,15 @@ interface ThemeSelectorProps {
 export default function ThemeSelector({ onSelectTheme, selectedThemeId }: ThemeSelectorProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
-  // 항상 false로 설정하여 패널이 열리지 않도록 함
-  useEffect(() => {
-    setIsExpanded(false)
-  }, [])
-
   // Handle random theme selection
   const handleRandomTheme = useCallback(() => {
     const randomTheme = generateRandomTheme()
     onSelectTheme(randomTheme)
   }, [onSelectTheme])
 
-  // 빈 함수로 대체
+  // 테마 선택기 토글 함수
   const toggleExpanded = useCallback(() => {
-    // 아무 동작도 하지 않음
+    setIsExpanded((prev) => !prev)
   }, [])
 
   // 테마 버튼 스타일 설정
@@ -64,31 +59,52 @@ export default function ThemeSelector({ onSelectTheme, selectedThemeId }: ThemeS
 
   return (
     <div
-      className="fixed bottom-0 right-6 z-30 flex flex-col items-end opacity-0"
-      style={{ animation: "fadeIn 0.5s ease-out 1s forwards", pointerEvents: "none" }}
+      className="fixed bottom-6 right-6 z-30 flex flex-col items-end"
+      style={{ animation: "fadeIn 0.5s ease-out 1s forwards", pointerEvents: "auto", opacity: 1 }}
     >
-      {/* Theme presets container - 완전히 왼쪽에 배치 */}
+      {/* 메인 테마 선택 버튼 */}
+      <div className="mb-4">
+        <button
+          className="w-12 h-12 rounded-full bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-black/80 transition-all duration-300 shadow-lg"
+          onClick={toggleExpanded}
+          style={{
+            boxShadow: `0 4px 20px rgba(0,0,0,0.3), 0 0 15px ${themes.find((t) => t.id === selectedThemeId)?.displayColor || "#FFFFFF"}30`,
+          }}
+        >
+          <div
+            className="w-6 h-6 rounded-full"
+            style={getThemeButtonStyle(themes.find((t) => t.id === selectedThemeId) || themes[0])}
+          />
+        </button>
+      </div>
+
+      {/* Theme presets container */}
       <div
-        className="absolute transition-all duration-300"
+        className="transition-all duration-300"
         style={{
-          bottom: 0,
-          right: "calc(100% + 16px)",
           opacity: isExpanded ? 1 : 0,
           pointerEvents: isExpanded ? "auto" : "none",
+          transform: isExpanded ? "translateY(0)" : "translateY(10px)",
         }}
       >
         {isExpanded && (
           <div className="bg-black/70 backdrop-blur-md rounded-2xl p-3 border border-white/10 shadow-lg">
             <div className="flex flex-col gap-2 items-center">
+              {/* 테마 제목 */}
+              <div className="text-white text-xs font-medium mb-2 text-center">Color Themes</div>
+
               {themes.map((theme) => (
                 <button
                   key={theme.id}
                   className="w-8 h-8 rounded-xl flex items-center justify-center relative group transition-transform duration-200 hover:scale-110 active:scale-90"
                   style={getThemeButtonStyle(theme)}
-                  onClick={() => onSelectTheme(theme)}
+                  onClick={() => {
+                    onSelectTheme(theme)
+                    setIsExpanded(false) // 테마 선택 후 패널 닫기
+                  }}
                 >
                   {/* Theme name tooltip - 왼쪽에 표시 */}
-                  <div className="absolute left-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  <div className="absolute right-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                     <div className="bg-black/80 backdrop-blur-md px-2 py-1 rounded-md text-white text-xs whitespace-nowrap">
                       {theme.name}
                     </div>
@@ -104,9 +120,12 @@ export default function ThemeSelector({ onSelectTheme, selectedThemeId }: ThemeS
               <button
                 className="w-8 h-8 rounded-xl flex items-center justify-center relative group overflow-hidden transition-transform duration-200 hover:scale-110 active:scale-90"
                 style={{
-                  border: "1px solid rgba(255, 255, 255, 0.5)", // 50% 투명도로 변경
+                  border: "1px solid rgba(255, 255, 255, 0.5)",
                 }}
-                onClick={handleRandomTheme}
+                onClick={() => {
+                  handleRandomTheme()
+                  setIsExpanded(false) // 랜덤 테마 선택 후 패널 닫기
+                }}
               >
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ic_random-K4S5qrKxO23pWIZZWAOY59Yk1DiZl5.png"
@@ -117,7 +136,7 @@ export default function ThemeSelector({ onSelectTheme, selectedThemeId }: ThemeS
                 />
 
                 {/* Tooltip - 왼쪽에 표시 */}
-                <div className="absolute left-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                <div className="absolute right-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                   <div className="bg-black/80 backdrop-blur-md px-2 py-1 rounded-md text-white text-xs whitespace-nowrap">
                     Random Theme
                   </div>

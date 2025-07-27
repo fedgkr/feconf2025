@@ -1,78 +1,119 @@
 export interface Section {
-  id: string;
+  id: string
   title: {
-    kr: string;
-    en: string;
-  };
+    kr: string
+    en: string
+  }
   description: {
-    kr: string;
-    en: string;
-  };
+    kr: string
+    en: string
+  }
   button?: {
-    kr: string;
-    en: string;
-  };
+    kr: string
+    en: string
+  }
 }
 
 export const sections: Section[] = [
   {
-    id: 'hero',
+    id: "hero",
     title: {
-      kr: 'FEConf',
-      en: 'FEConf',
+      kr: "FEconf",
+      en: "FEconf",
     },
     description: {
-      kr: '한국 최대 프론트엔드 개발 컨퍼런스, FEConf에 오신 것을 환영합니다. 최신 기술과 트렌드를 경험하세요.',
-      en: 'Welcome to the largest frontend development conference in Korea, FEConf. Experience the latest technologies and trends.',
+      kr: "FEconf에서 여러분이 /경험할 수 있는 것은?",
+      en: "What you can /experience at FEconf?",
     },
     button: {
-      kr: '이전 영상 보러가기',
-      en: 'Watch Previous Videos',
+      kr: "이전 영상 보러가기",
+      en: "Watch Previous Videos",
     },
   },
   {
-    id: 'speaker',
+    id: "program",
     title: {
-      kr: '스피커 모집',
-      en: 'Speaker',
+      kr: "프로그램 소개",
+      en: "Program Introduction",
     },
     description: {
-      kr: 'FECONF 스피커가 되어 한국 FE 문화를 선도해보세요',
-      en: 'Become a FECONF Speaker and lead the Korean FE culture',
+      kr: "FEConf를 빛낼 /스피커와 프로그램",
+      en: "Speakers and Programs /that will shine at FEConf",
     },
     button: {
-      kr: '스피커 신청하기',
-      en: 'Become a speaker',
+      kr: "전체 프로그램 보기",
+      en: "View Full Program",
     },
   },
   {
-    id: 'lightning',
+    id: "panel",
     title: {
-      kr: '라이트닝톡 모집',
-      en: 'Lightning Talk',
+      kr: "리더쉽 토크",
+      en: "Leadership Talk",
     },
     description: {
-      kr: 'FECONF 내에서 가장 열정적으로 당신의 스토리를 공유하세요',
-      en: 'The most passionate within FECONF share your story',
+      kr: "FEconf 현장에서 함께하는 /한국 대표 프론트엔드 리더들과의 대담",
+      en: "Dialogue with Korea's leading /frontend leaders at FEconf",
     },
     button: {
-      kr: '라이트닝톡 신청하기',
-      en: 'Sign up for LightningTalk',
+      kr: "리더쉽 토크 참여하기",
+      en: "Join Leadership Talk",
     },
   },
   {
-    id: 'sponsor',
+    id: "networking",
     title: {
-      kr: '후원사 모집',
-      en: 'Sponsor',
+      kr: "네트워킹 세션",
+      en: "Networking Session",
     },
     description: {
-      kr: '한국 최대 FE 컨퍼런스에서 기업 홍보, 인재 채용을 한번에',
-      en: 'At the largest frontend development conference in Korea, promote your company and recruit talent at the same time',
+      kr: "FEconf에서 모두와 함께/어울리고 소통하세요",
+      en: "Connect and communicate /with everyone at FEconf",
     },
     button: {
-      kr: '후원사 신청하기',
-      en: 'Sign up as a sponsor',
+      kr: "네트워킹 참여하기",
+      en: "Join Networking",
     },
   },
-];
+  {
+    id: "ticket",
+    title: {
+      kr: "티켓 안내",
+      en: "Ticket Information",
+    },
+    description: {
+      kr: "FEconf 2025 /티켓을 지금 구매하세요",
+      en: "Purchase your /FEconf 2025 tickets now",
+    },
+    button: {
+      kr: "티켓 구매하기",
+      en: "Buy Tickets",
+    },
+  },
+  {
+    id: "sponsor",
+    title: {
+      kr: "후원사 소개",
+      en: "Sponsor Introduction",
+    },
+    description: {
+      kr: "FEconf를 함께하는 /한국 대표 FE 기업들",
+      en: "Korea's leading FE companies /supporting FEconf",
+    },
+  },
+  {
+    id: "conduct",
+    title: {
+      kr: "행동 규범",
+      en: "Code of Conduct",
+    },
+    description: {
+      kr: "FEConf에 참여하는 분들은 /다음 사항을 준수해주세요",
+      en: "Participants in FEConf /must comply with the following",
+    },
+    button: {
+      kr: "행동 규범 보기",
+      en: "View Code of Conduct",
+    },
+  },
+]
