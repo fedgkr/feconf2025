@@ -24,12 +24,12 @@ export default function FeconfCard({ theme }: FeconfCardProps) {
       suffix: t("명", ""),
     },
     {
-      label: t("Youtube 구독자", "Youtube Subscribers"),
+      label: t("YouTube 구독자", "YouTube Subscribers"),
       value: "11,000",
       suffix: t("명", ""),
     },
     {
-      label: t("Youtube 조회수", "Youtube Views"),
+      label: t("YouTube 조회수", "YouTube Views"),
       value: "100,000",
       suffix: t("회", ""),
     },

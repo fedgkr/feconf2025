@@ -97,13 +97,13 @@ export default function TicketSection({ theme }: TicketSectionProps) {
     },
     {
       icon: <Youtube size={22} />,
-      label: t("Youtube 구독자", "Youtube Subscribers"),
+      label: t("YouTube 구독자", "YouTube Subscribers"),
       value: animatedStats.subscribers.toLocaleString(),
       suffix: t("명", ""),
     },
     {
       icon: <Eye size={22} />,
-      label: t("Youtube 연간 조회 수", "Youtube Annual Views"),
+      label: t("YouTube 연간 조회 수", "YouTube Annual Views"),
       value: animatedStats.views.toLocaleString(),
       suffix: t("view", ""),
     },

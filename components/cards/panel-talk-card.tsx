@@ -336,7 +336,7 @@ export default function PanelTalkCard({ theme }: PanelTalkCardProps) {
                           rel="noopener noreferrer"
                           className="text-gray-400 hover:text-white transition-colors"
                           onClick={(e) => e.stopPropagation()}
-                          aria-label={`${t(panelist.name.kr, panelist.name.en)} Youtube`}
+                          aria-label={`${t(panelist.name.kr, panelist.name.en)} YouTube`}
                         >
                           <YoutubeIcon size={16} />
                         </a>
