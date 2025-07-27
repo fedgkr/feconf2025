@@ -448,8 +448,8 @@ export default function PanelTalkCard({ theme }: PanelTalkCardProps) {
               </h4>
               <p className="text-gray-300 text-sm leading-relaxed text-center break-keep">
                 {t(
-                  "빠르게 진화하는 웹 기술 속에서 팀을 이끌고, 기술을 선택하며, 제품을 만들어내는 프론트엔드 리더 3인이 모였습니다. 이번 패널 토크에서는 각기 다른 조직에서 활약 중인 리더들이 실제 현장에서의 리더십, 팀 문화 설계까지 생생한 경험을 바탕으로 이야기를 나눕니다.",
-                  "In the rapidly evolving world of web technology, three frontend leaders who lead teams, select technologies, and create products have come together. In this panel talk, leaders active in different organizations will share stories based on their vivid experiences, from on-the-ground leadership to team culture design.",
+                  "프론트엔드 팀을 이끌고, 제품을 지탱할 기술을 선택하며, 제품의 경험을 개선하는 프론트엔드 리더 3인이 FEConf에 찾아옵니다. 여기에 다양한 회사에서 개발자와 리드를 모두 경험한 모더레이터가 함께 패널 토크를 진행합니다. 이번에 최초로 진행되는 프론트엔드 패널 토크, Frontend Leader Talk에서는 프론트엔드 현장에서 나올법한 생생한 이야기를 나눕니다. 골드 티켓 구매자 대상으로 사전에 받은 질문을 통해 몇 가지 주제를 선정하여 토크를 진행할 예정이며 현장에서도 자유롭게 질문을 주고 받는 패널 토크가 진행될 예정입니다.",
+                  "Three frontend leaders who lead teams, select technologies, and create products have come together. In this panel talk, leaders active in different organizations will share stories based on their vivid experiences, from on-the-ground leadership to team culture design. Moderator, who has experience as both a developer and a leader in various companies, will join the panel talk. This is the first time for a frontend panel talk, Frontend Leader Talk, where we will discuss vivid stories from the frontend field. The panel talk will be conducted with a few selected topics based on questions submitted in advance, and participants will be able to freely ask and answer questions during the event.",
                 )}
               </p>
             </div>
