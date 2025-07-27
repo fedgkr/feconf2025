@@ -198,7 +198,7 @@ export default function TicketCard({ theme }: TicketCardProps) {
             </div>
             <p className="text-xs text-white/60">
               {t(
-                "깊이 있는 인사이트를 나누고 싶은 협업 개발자분들께 추천해요.",
+                "깊이 있는 인사이트를 나누고 싶은 현업 개발자분들께 추천해요.",
                 "Recommended for collaborative developers who want to share deep insights.",
               )}
             </p>
