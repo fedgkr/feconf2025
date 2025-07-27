@@ -66,7 +66,7 @@ export default function PanelTalkCard({ theme }: PanelTalkCardProps) {
         role: { kr: "토스 Head of Frontend", en: "Head of Frontend" },
         company: { kr: "토스", en: "Toss" },
         description: {
-          kr: "2018년 토스에 첫 회사로 합류한 이후, 10명 규모의 프론트엔드 팀이 100명 이상의 규모로 성장하는 과정에 함께했다. '아름다운 프론트엔드 화면을 만들고 싶'는 단순한 목표로 시작했지만, 말 좋은 프론트엔드를 만들기 위해서는 물 흐르는 듯 일할 수 있는 개발환경과 좋은 조직문화가 중요하다는 것을 깨달았습니다. '언제든 더 나아질 수 있다'는 철학 아래에서, 실패를 허용하는 조직 문화를 조성하고 주니어 개발자들이 성장할 수 있는 환경을 구축하는 데에 집중하고 있어요. FEConf, App.js Conf, Slash 등 국내외 컨퍼런스에서 기술과 리더십에 대해 이야기해왔으며, 온라인에서는 raon0211 아이디로 활동합니다.",
+          kr: "2018년 토스에 첫 회사로 합류한 이후, 10명 규모의 프론트엔드 팀이 100명 이상의 규모로 성장하는 과정에 함께했다. '아름다운 프론트엔드 화면을 만들고 싶다'는 단순한 목표로 시작했지만, 말 좋은 프론트엔드를 만들기 위해서는 물 흐르는 듯 일할 수 있는 개발환경과 좋은 조직문화가 중요하다는 것을 깨달았습니다. '언제든 더 나아질 수 있다'는 철학 아래에서, 실패를 허용하는 조직 문화를 조성하고 주니어 개발자들이 성장할 수 있는 환경을 구축하는 데에 집중하고 있어요. FEConf, App.js Conf, Slash 등 국내외 컨퍼런스에서 기술과 리더십에 대해 이야기해왔으며, 온라인에서는 raon0211 아이디로 활동합니다.",
           en: "After joining Toss as my first company in 2018, I've been part of the journey as the frontend team grew from 10 to over 100 members. I started with a simple goal to 'create beautiful frontend screens,' but realized that a seamless development environment and a good organizational culture are crucial for truly great frontend development. Under the philosophy that 'we can always improve,' I focus on fostering a culture that allows failure and building an environment where junior developers can grow. I've spoken about technology and leadership at domestic and international conferences like FEConf, App.js Conf, and Slash, and I'm active online under the ID raon0211.",
         },
         image: "/images/panelists/park-seojin.png",
