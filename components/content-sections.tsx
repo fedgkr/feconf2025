@@ -140,7 +140,7 @@ return (
 >\
   <div className=\"flex flex-col items-center justify-center gap-2 text-white/60 mb-8">
     <div className="text-base font-questrial font-bold mb-2" style=\{\{ fontWeight: "700" \}\}>
-      \{t("FEconf 2025까지 남은 시간", \"Time remaining until FEconf 2025")\}
+      \{t("FEConf 2025까지 남은 시간", \"Time remaining until FEConf 2025")\}
     </div>
     <div className=\"flex items-center gap-4">
       <div className="flex flex-col items-center">

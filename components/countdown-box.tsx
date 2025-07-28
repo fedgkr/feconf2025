@@ -18,7 +18,7 @@ export default function CountdownBox({ className, onClick }: CountdownBoxProps) 
     seconds: number
   }>({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
-  // FEconf 날짜 설정 (2025년 8월 23일)
+  // FEConf 날짜 설정 (2025년 8월 23일)
   useEffect(() => {
     const feconfDate = new Date("2025-08-23T09:00:00+09:00")
 

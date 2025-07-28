@@ -294,7 +294,7 @@ transparent 100%)`,
             <div className="w-full px-5 py-5 md:px-10 md:py-10 mx-auto text-center pointer-events-auto bg-transparent">
               <ScrollAnimation type="fade" delay={0.2}>
                 <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-8 whitespace-nowrap py-2.5">
-                  {t("함께 만들어가는 FEconf", "Building FEconf Together")}
+                  {t("함께 만들어가는 FEConf", "Building FEConf Together")}
                 </h2>
               </ScrollAnimation>
               <ScrollAnimation type="slide" direction="up" delay={0.4}>

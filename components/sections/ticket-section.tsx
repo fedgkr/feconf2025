@@ -30,7 +30,7 @@ export default function TicketSection({ theme }: TicketSectionProps) {
     views: 0,
   })
 
-  // FEconf 날짜 설정 (2025년 8월 23일)
+  // FEConf 날짜 설정 (2025년 8월 23일)
   useEffect(() => {
     const feconfDate = new Date("2025-08-23T09:00:00+09:00")
 
@@ -147,7 +147,7 @@ export default function TicketSection({ theme }: TicketSectionProps) {
         transition={{ duration: 0.8 }}
       >
         <div className="text-xl md:text-2xl font-bold mb-4 text-center" style={{ fontWeight: "700" }}>
-          {t("FEconf 2025까지 남은 시간", "Time remaining until FEconf 2025")}
+          {t("FEConf 2025까지 남은 시간", "Time remaining until FEConf 2025")}
         </div>
         <div className="flex items-center gap-6 md:gap-8">
           <div className="flex flex-col items-center">

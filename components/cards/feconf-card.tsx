@@ -145,7 +145,7 @@ export default function FeconfCard({ theme }: FeconfCardProps) {
                 <br />
                 By sharing the intense concerns and deep insights we've encountered together,
                 <br />
-                FEconf grows with you
+                FEConf grows with you
               </>
             )}
           </h2>

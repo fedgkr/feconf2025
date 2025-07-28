@@ -193,7 +193,7 @@ export default function CardGenerator(props: CardGeneratorProps) {
             const file = new File([blob], `feconf-card-${userName.toLowerCase()}.png`, { type: "image/png" })
             navigator
               .share({
-                title: "My FEconf 2025 Card",
+                title: "My FEConf 2025 Card",
                 files: [file],
               })
               .catch((error) => {
@@ -266,7 +266,7 @@ export default function CardGenerator(props: CardGeneratorProps) {
               </button>
 
               <h2 className="text-xl font-bold text-white mb-6 text-center">
-                {t("FEconf 2025 카드", "FEconf 2025 Card")}
+                {t("FEConf 2025 카드", "FEConf 2025 Card")}
               </h2>
 
               {/* Card preview */}
@@ -291,11 +291,11 @@ export default function CardGenerator(props: CardGeneratorProps) {
                   {/* Semi-transparent overlay */}
                   <div className="absolute inset-0" style={template.overlayStyle} />
 
-                  {/* FEconf logo */}
+                  {/* FEConf logo */}
                   <div className="absolute top-6 left-6">
                     <img
                       src="/images/logo_web.png"
-                      alt="FEconf Logo"
+                      alt="FEConf Logo"
                       className="h-auto w-[72px] brightness-200"
                       crossOrigin="anonymous"
                     />

@@ -18,12 +18,12 @@ export const sections: Section[] = [
   {
     id: "hero",
     title: {
-      kr: "FEconf",
-      en: "FEconf",
+      kr: "FEConf",
+      en: "FEConf",
     },
     description: {
       kr: "FEconf에서 여러분이 /경험할 수 있는 것은?",
-      en: "What you can /experience at FEconf?",
+      en: "What you can /experience at FEConf?",
     },
     button: {
       kr: "이전 영상 보러가기",
@@ -52,8 +52,8 @@ export const sections: Section[] = [
       en: "Leadership Talk",
     },
     description: {
-      kr: "FEconf 현장에서 함께하는 /한국 대표 프론트엔드 리더들과의 대담",
-      en: "Dialogue with Korea's leading /frontend leaders at FEconf",
+      kr: "FEConf 현장에서 함께하는 /한국 대표 프론트엔드 리더들과의 대담",
+      en: "Dialogue with Korea's leading /frontend leaders at FEConf",
     },
     button: {
       kr: "리더쉽 토크 참여하기",
@@ -68,7 +68,7 @@ export const sections: Section[] = [
     },
     description: {
       kr: "FEconf에서 모두와 함께/어울리고 소통하세요",
-      en: "Connect and communicate /with everyone at FEconf",
+      en: "Connect and communicate /with everyone at FEConf",
     },
     button: {
       kr: "네트워킹 참여하기",
@@ -82,8 +82,8 @@ export const sections: Section[] = [
       en: "Ticket Information",
     },
     description: {
-      kr: "FEconf 2025 /티켓을 지금 구매하세요",
-      en: "Purchase your /FEconf 2025 tickets now",
+      kr: "FEConf 2025 /티켓을 지금 구매하세요",
+      en: "Purchase your /FEConf 2025 tickets now",
     },
     button: {
       kr: "티켓 구매하기",
@@ -98,7 +98,7 @@ export const sections: Section[] = [
     },
     description: {
       kr: "FEconf를 함께하는 /한국 대표 FE 기업들",
-      en: "Korea's leading FE companies /supporting FEconf",
+      en: "Korea's leading FE companies /supporting FEConf",
     },
   },
   {
