@@ -227,7 +227,7 @@ const sessionB: Session[] = [
     },
     speaker: {
       kr: "김무훈",
-      en: "Muhun Kim",
+      en: "Mu-hun Kim",
     },
     company: {
       kr: "A11YKR 커뮤니티",
