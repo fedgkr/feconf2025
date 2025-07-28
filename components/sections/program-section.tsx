@@ -43,15 +43,15 @@ const sessionA: Session[] = [
     },
     speaker: {
       kr: "문대현",
-      en: "Daehyun Moon",
+      en: "Daehyeon Mun",
     },
     company: {
-      kr: "Callie",
-      en: "Callie",
+      kr: "Nabi",
+      en: "Nabi",
     },
     content: {
-      kr: 'React Native에서 60 FPS 성능을 끌어내는 노하우를 공유합니다. React Native 만의 특수성을 이해하고, UI 성능 진단 방법과 최적화 핵심 포인트를 소개합니다. 끝으로 개인 프로젝트인 React Native 기반 2D 게임 "NeonCity:CityRunner" 에 적용한 최적화 사례를 코드 레벨에서 살펴보며 인사이트를 나눕니다.',
-      en: 'Sharing know-how to achieve 60 FPS performance in React Native. Understanding React Native\'s unique characteristics, introducing UI performance diagnosis methods and optimization key points. Finally, examining optimization cases applied to the personal project React Native-based 2D game "NeonCity:CityRunner" at the code level and sharing insights.',
+      kr: "60 FPS의 부드러운 React Native 앱을 만들기 위한 성능 최적화와 애니메이션에 대해 이야기합니다. 성능 이슈 진단 방법과 스레드별 최적화 방법, 비주얼 인터렉션 등 High Quality App을 만드는데 필요한 인사이트를 소개합니다.",
+      en: "In this talk, I'll cover how to optimize performance and animations to build smooth, 60 FPS React Native apps. You'll learn practical techniques for diagnosing performance issues, optimizing threads, and creating engaging visual interactions—key insights to help you deliver high-quality applications.",
     },
   },
   {
