@@ -70,8 +70,8 @@ const sessionA: Session[] = [
       en: "Toss RN Framework Team",
     },
     content: {
-      kr: "App Center 종료 이후, React Native에서 벤더 종속 없이 OTA 업데이트를 적용할 수 있는 방법에 대해 이야기합니다. 기존 CodePush 방식의 한계를 극복하고, 플러그인 기반 아키텍처로 구성된 오픈소스 프로젝트 **hot-updater**를 소개드릴게요. 다양한 인프라—AWS, Supabase, Cloudflare, Firebase 등—와 유연하게 연동되는 구조와, 단일 명령어로 셀프 호스팅 가능한 업데이트 파이프라인을 어떻게 만들었는지 공유드리겠습니다.",
-      en: "After App Center's discontinuation, discussing how to apply OTA updates in React Native without vendor lock-in. Overcoming the limitations of existing CodePush methods and introducing the open-source project **hot-updater** built with plugin-based architecture. Sharing how we created a structure that flexibly integrates with various infrastructures—AWS, Supabase, Cloudflare, Firebase, etc.—and an update pipeline that enables self-hosting with a single command.",
+      kr: "App Center 종료 이후, React Native에서 벤더 종속 없이 OTA 업데이트를 적용할 수 있는 방법에 대해 이야기합니다. 기존 CodePush 방식의 한계를 극복하고, 플러그인 기반 아키텍처로 구성된 오픈소스 프로젝트 'hot-updater'를 소개드릴게요. 다양한 인프라—AWS, Supabase, Cloudflare, Firebase 등—와 유연하게 연동되는 구조와, 단일 명령어로 셀프 호스팅 가능한 업데이트 파이프라인을 어떻게 만들었는지 공유드리겠습니다.",
+      en: "After App Center's discontinuation, discussing how to apply OTA updates in React Native without vendor lock-in. Overcoming the limitations of existing CodePush methods and introducing the open-source project 'hot-updater' built with plugin-based architecture. Sharing how we created a structure that flexibly integrates with various infrastructures—AWS, Supabase, Cloudflare, Firebase, etc.—and an update pipeline that enables self-hosting with a single command.",
     },
   },
   {
