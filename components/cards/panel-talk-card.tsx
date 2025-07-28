@@ -164,7 +164,7 @@ export default function PanelTalkCard({ theme }: PanelTalkCardProps) {
       },
       {  
         id: 2,
-        question: { kr: "현장에서 질문이 가능한가요?", en: "What topics do you mainly cover?" },
+        question: { kr: "현장에서 질문이 가능한가요?", en: "Can I ask questions on-site?" },
         answer: {
           kr: "패널 토크에 할당한 시간은 2시간 정도이며 현장의 분위기에 맞춰 유동적으로 진행할 예정입니다. 깊이 있는 토론을 나눌 수 있는 좋은 질문이 있다면 그 주제만을 다룰 수도 있고 그렇지 않다면 사전에 제출된 내용을 중심으로 토크를 진행할 예정입니다.",
           en: "We’ve allocated about two hours for the panel talk, and it will be conducted flexibly depending on the atmosphere at the venue. If there are great questions that lead to in-depth discussion, we may focus solely on those topics. Otherwise, the talk will center around the questions submitted in advance.",
