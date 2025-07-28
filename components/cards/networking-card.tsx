@@ -118,7 +118,7 @@ export default function NetworkingCard({ theme }: NetworkingCardProps) {
                 </div>
                 <p className="text-gray-300 text-sm leading-relaxed text-left break-keep">
                   {t(
-                    "자유로운 분위기에서 서로의 관심사를 소개하고, 인연을 이어가보세요.",
+                    "자유로운 분위기에서 서로의 관심사를 소개하고, 인연을 이어 가보세요.",
                     "In a relaxed atmosphere, introduce each other's interests and continue building connections.",
                   )}
                 </p>

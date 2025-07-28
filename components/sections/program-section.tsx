@@ -110,7 +110,7 @@ const sessionA: Session[] = [
       en: "DevFive Inc.",
     },
     content: {
-      kr: "정말 티끌 하나도 코스트가 없는 CSS IN JS 라이브러리 Devup-UI! 그러면서 반응형, 선택자, 테마까지 많은 기능을 제공하는 Devup-UI는 어떻게 이런 성능과 기능들을 모두 제공할 수 있을까? Nextjs 의 서버컴포넌트 도입으로 하락세를 겪고 있는 CSS IN JS 라이브러리에 대한 완벽한 대안기능 구현에 대한 아이디어부터 Rust 와 웹 어셈블리를 통하여 개발하게 된 개발기 그리고 실제 작동까지 어떤 라이브러리 보다 효율적이고 성능 이슈가 전혀 없는 완벽한 해결법을 향한 여정을 공유드립니다.",
+      kr: "정말 티끌 하나도 코스트가 없는 CSS-in-JS 라이브러리 Devup-UI! 그러면서 반응형, 선택자, 테마까지 많은 기능을 제공하는 Devup-UI는 어떻게 이런 성능과 기능들을 모두 제공할 수 있을까? Nextjs 의 서버컴포넌트 도입으로 하락세를 겪고 있는 CSS-in-JS 라이브러리에 대한 완벽한 대안기능 구현에 대한 아이디어부터 Rust 와 웹 어셈블리를 통하여 개발하게 된 개발기 그리고 실제 작동까지 어떤 라이브러리 보다 효율적이고 성능 이슈가 전혀 없는 완벽한 해결법을 향한 여정을 공유드립니다.",
       en: "Devup-UI, a truly zero-cost CSS-in-JS library! How can Devup-UI provide all these performance benefits and features while offering responsive design, selectors, themes, and many other functionalities? From the idea of implementing a perfect alternative to CSS-in-JS libraries that are experiencing a decline due to the introduction of Next.js server components, to the development story through Rust and WebAssembly, and actual operation - sharing the journey toward a perfect solution that is more efficient than any library and has no performance issues at all.",
     },
   },
@@ -214,7 +214,7 @@ const sessionB: Session[] = [
       en: "Remember and Company",
     },
     content: {
-      kr: "Memoization을 위해 React 코드에서 흔히 사용되던 memo, useMemo와 이제는 헤어질 시간입니다. React Compiler가 어떻게 우리를 대신해 최적화를 수행하는지, 실제 React 코드가 어떻게 변화하는지 파이프라인을 따라 깊이 있게 살펴보고 앞으로 어떤 멘탈모델을 가지고 React 코드를 작성해야할지 이야기해봅니다.",
+      kr: "Memoization을 위해 React 코드에서 흔히 사용되던 memo, useMemo와 이제는 헤어질 시간입니다. React Compiler가 어떻게 우리를 대신해 최적화를 수행하는지, 실제 React 코드가 어떻게 변화하는지 파이프라인을 따라 깊이 있게 살펴보고 앞으로 어떤 멘탈모델을 가지고 React 코드를 작성해야 할지 이야기해봅니다.",
       en: "It's time to say goodbye to memo and useMemo that were commonly used in React code for memoization. We'll take a deep dive into how React Compiler performs optimization on our behalf, how actual React code changes through the pipeline, and discuss what mental model we should have when writing React code in the future.",
     },
   },
@@ -314,7 +314,7 @@ const sessionB: Session[] = [
       en: "Marpple Corporation",
     },
     content: {
-      kr: "그리드 기반 에디터는 웹에 최적화된 자유도를 가진 에디터입니다. 이런 장점을 기반으로 노코드 웹사이트 제작, 사용자 정의 대시보드 등 다양한 제품에서 사용할 수 있습니다. 대표적으로 Squarespace, 큐샵과 같은 서비스에서도 사용하고 있습니다. 본 발표에선 그리드 기반 에디터에 대한 소개와 구현 전략, 구현시 주의할 점에 대해 다룹니다.",
+      kr: "그리드 기반 에디터는 웹에 최적화된 자유도를 가진 에디터입니다. 이런 장점을 기반으로 노코드 웹사이트 제작, 사용자 정의 대시보드 등 다양한 제품에서 사용할 수 있습니다. 대표적으로 Squarespace, 큐샵과 같은 서비스에서도 사용하고 있습니다. 본 발표에선 그리드 기반 에디터에 대한 소개와 구현 전략, 구현 시 주의할 점에 대해 다룹니다.",
       en: "Grid-based editors are editors with degrees of freedom optimized for the web. Based on these advantages, they can be used in various products such as no-code website creation and custom dashboards. They are notably used in services like Squarespace and Qshop. This presentation covers an introduction to grid-based editors, implementation strategies, and points to consider during implementation.",
     },
   },
