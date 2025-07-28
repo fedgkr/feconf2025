@@ -82,8 +82,8 @@ export const sections: Section[] = [
       en: "Ticket Information",
     },
     description: {
-      kr: "FEConf 2025 /티켓을 지금 구매하세요",
-      en: "Purchase your /FEConf 2025 tickets now",
+      kr: "FEConf2025 /티켓을 지금 구매하세요",
+      en: "Purchase your /FEConf2025 tickets now",
     },
     button: {
       kr: "티켓 구매하기",

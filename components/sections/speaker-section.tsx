@@ -107,7 +107,7 @@ Please share your concerns, solutions, special techniques, know-how, and tips th
 - Editor
 - Svelte
 - Local First (Sync Engine)`,
-        en: `We surveyed 'Topics you want to hear at FEConf 2025' through FEConf channels, and here are the most mentioned topics.
+        en: `We surveyed 'Topics you want to hear at FEConf2025' through FEConf channels, and here are the most mentioned topics.
 The more relevant your topic is, the higher the chance of being selected. Of course, you can also apply with other topics.
 
 - AI and Frontend

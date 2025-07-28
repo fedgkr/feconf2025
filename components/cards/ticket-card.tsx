@@ -87,7 +87,7 @@ export default function TicketCard({ theme }: TicketCardProps) {
         <p className="text-white/70">
           {t(
             "FEConf 2025에 참여하여 최신 프론트엔드 기술과 트렌드를 경험해보세요.",
-            "Join FEConf 2025 to experience the latest frontend technologies and trends.",
+            "Join FEConf2025 to experience the latest frontend technologies and trends.",
           )}
         </p>
       </div>

@@ -51,7 +51,7 @@ export default function SpeakerCard({ theme }: SpeakerCardProps) {
         <div className="text-center mb-8">
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">{t("스피커 모집", "Speaker Recruitment")}</h3>
           <p className="text-gray-400">
-            {t("FEConf 2025의 주인공이 되어주세요", "Become the protagonist of FEConf 2025")}
+            {t("FEConf 2025의 주인공이 되어주세요", "Become the protagonist of FEConf2025")}
           </p>
         </div>
 

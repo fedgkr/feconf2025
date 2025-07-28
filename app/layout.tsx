@@ -3,20 +3,20 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: 'FEConf 2025',
+  title: 'FEConf2025',
   description: 'The largest frontend development conference in Korea',
   icons: {
     icon: '/metadata/fe2025_fav.png',
   },
   openGraph: {
-    title: 'FEConf 2025',
+    title: 'FEConf2025',
     description: 'The largest frontend development conference in Korea',
     images: [
       {
         url: 'https://2025.feconf.kr/metadata/fe2025_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'FEConf 2025',
+        alt: 'FEConf2025',
       },
     ],
   },

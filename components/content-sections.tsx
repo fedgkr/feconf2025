@@ -140,7 +140,7 @@ return (
 >\
   <div className=\"flex flex-col items-center justify-center gap-2 text-white/60 mb-8">
     <div className="text-base font-questrial font-bold mb-2" style=\{\{ fontWeight: "700" \}\}>
-      \{t("FEConf 2025까지 남은 시간", \"Time remaining until FEConf 2025")\}
+      \{t("FEConf 2025까지 남은 시간", \"Time remaining until FEConf2025")\}
     </div>
     <div className=\"flex items-center gap-4">
       <div className="flex flex-col items-center">
@@ -319,7 +319,7 @@ const accordionItems = [
   title: \{ kr: "주제는 무엇이 있나요?", en: "What topics are available?" \},
   content: \{
     kr: `FEConf 채널들을 통해 'FEConf 2025에서 듣고 싶은 주제'를 조사했고, 그중 많이 언급된 주제들을 소개합니다.\n주제와 연관이 있을수록 선정될 확률이 높아요. 물론 이 외의 주제도 신청 가능합니다.\n\n- AI와 Frontend\n- RSC (React 19)\n- Next.js\n- Testing\n- CSS\n- Dev tools (Profiling, Debugging 등)\n- React Native\n- Design System\n- For 주니어\n- Web3\n- Design Engineering\n- WebAssembly\n- Accessibility\n- Editor\n- Svelte\n- Local First (Sync Engine)`,
-    en: `We surveyed 'Topics you want to hear at FEConf 2025' through FEConf channels, and here are the most mentioned topics.\nThe more relevant your topic is, the higher the chance of being selected. Of course, you can also apply with other topics.\n\n- AI and Frontend\n- RSC (React 19)\n- Next.js\n- Testing\n- CSS\n- Dev tools (Profiling, Debugging, etc.)\n- React Native\n- Design System\n- For Juniors\n- Web3\n- Design Engineering\n- WebAssembly\n- Accessibility\n- Editor\n- Svelte\n- Local First (Sync Engine)`,
+    en: `We surveyed 'Topics you want to hear at FEConf2025' through FEConf channels, and here are the most mentioned topics.\nThe more relevant your topic is, the higher the chance of being selected. Of course, you can also apply with other topics.\n\n- AI and Frontend\n- RSC (React 19)\n- Next.js\n- Testing\n- CSS\n- Dev tools (Profiling, Debugging, etc.)\n- React Native\n- Design System\n- For Juniors\n- Web3\n- Design Engineering\n- WebAssembly\n- Accessibility\n- Editor\n- Svelte\n- Local First (Sync Engine)`,
   \},
 \},
 \{
