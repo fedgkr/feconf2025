@@ -4,13 +4,13 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: 'FEConf2025',
-  description: 'The largest frontend development conference in Korea',
+  description: '국내 최대 프론트엔드 개발 컨퍼런스, FECONF 2025가 8월 23일 오프라인으로 찾아옵니다.',
   icons: {
     icon: '/metadata/fe2025_fav.png',
   },
   openGraph: {
     title: 'FEConf2025',
-    description: 'The largest frontend development conference in Korea',
+    description: '국내 최대 프론트엔드 개발 컨퍼런스, FECONF 2025가 8월 23일 오프라인으로 찾아옵니다.',
     images: [
       {
         url: 'https://2025.feconf.kr/metadata/fe2025_og.jpg',
