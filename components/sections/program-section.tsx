@@ -110,8 +110,8 @@ const sessionA: Session[] = [
       en: "DevFive Inc.",
     },
     content: {
-      kr: "정말 티끌 하나도 코스트가 없는 CSS-in-JS 라이브러리 Devup-UI! 그러면서 반응형, 선택자, 테마까지 많은 기능을 제공하는 Devup-UI는 어떻게 이런 성능과 기능들을 모두 제공할 수 있을까? Nextjs 의 서버컴포넌트 도입으로 하락세를 겪고 있는 CSS-in-JS 라이브러리에 대한 완벽한 대안기능 구현에 대한 아이디어부터 Rust 와 웹 어셈블리를 통하여 개발하게 된 개발기 그리고 실제 작동까지 어떤 라이브러리 보다 효율적이고 성능 이슈가 전혀 없는 완벽한 해결법을 향한 여정을 공유드립니다.",
-      en: "Devup-UI, a truly zero-cost CSS-in-JS library! How can Devup-UI provide all these performance benefits and features while offering responsive design, selectors, themes, and many other functionalities? From the idea of implementing a perfect alternative to CSS-in-JS libraries that are experiencing a decline due to the introduction of Next.js server components, to the development story through Rust and WebAssembly, and actual operation - sharing the journey toward a perfect solution that is more efficient than any library and has no performance issues at all.",
+      kr: "정말 티끌 하나도 코스트가 없는 CSS-in-JS 라이브러리 Devup-UI! 그러면서 반응형, 선택자, 테마까지 많은 기능을 제공하는 Devup-UI는 어떻게 이런 성능과 기능들을 모두 제공할 수 있을까? Next.js 의 서버컴포넌트 도입으로 하락세를 겪고 있는 CSS-in-JS 라이브러리에 대한 완벽한 대안기능 구현에 대한 아이디어부터 Rust와 웹 어셈블리를 통하여 개발하게 된 개발기 그리고 실제 작동까지! 어떤 라이브러리 보다 효율적이고(심지어 Tailwind CSS보다도!) 성능 이슈가 전혀 없는 완벽한 해결법을 향한 여정을 공유드립니다.",
+      en: "Devup-UI, a truly zero-cost CSS-in-JS library! How can Devup-UI provide all these performance benefits and features while offering responsive design, selectors, themes, and many other functionalities? From the idea of implementing a perfect alternative to CSS-in-JS libraries that are experiencing a decline due to the introduction of Next.js server components, to the development story through Rust and WebAssembly, and actual operation – sharing the journey toward a perfect solution that is more efficient than any library, even Tailwind CSS, and has no performance issues at all.",
     },
   },
   {
