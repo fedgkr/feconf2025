@@ -87,7 +87,7 @@ export default function TicketCard({ theme }: TicketCardProps) {
         <p className="text-white/70">
           {t(
             "FEConf 2025에 참여하여 최신 프론트엔드 기술과 트렌드를 경험해보세요.",
-            "Join FEConf2025 to experience the latest frontend technologies and trends.",
+            "Join FEConf 2025 to experience the latest frontend technologies and trends.",
           )}
         </p>
       </div>
@@ -198,7 +198,7 @@ export default function TicketCard({ theme }: TicketCardProps) {
             </div>
             <p className="text-xs text-white/60">
               {t(
-                "깊이 있는 인사이트를 나누고 싶은 현업 개발자분들께 추천해요.",
+                "깊이 있는 인사이트를 나누고 싶은 협업 개발자분들께 추천해요.",
                 "Recommended for collaborative developers who want to share deep insights.",
               )}
             </p>
@@ -295,8 +295,7 @@ export default function TicketCard({ theme }: TicketCardProps) {
       <motion.div className="mt-8 p-6 md:p-6 rounded-xl bg-gray-900/30 backdrop-blur-md border border-gray-800 max-w-4xl mx-auto">
         <h4 className="font-semibold mb-3 text-white/90">{t("주의사항", "Important Notes")}</h4>
         <ul className="text-sm text-gray-300 space-y-2">
-          <li>• {t("티켓은 8월 1일 오전 11시부터 구매가 가능합니다.", "Tickets are available for purchase from 11:00 AM on August 1st.")}</li>
-          <li>• {t("티켓 환불은 행사일 기준 7일 전까지 가능합니다.", "Ticket refunds are available up to 7 days before the event date.")}</li>
+          <li>• {t("티켓 구매 후 환불은 불가능합니다.", "No refunds after ticket purchase.")}</li>
           <li>• {t("골드 티켓은 한정 수량으로 판매됩니다.", "Gold tickets are sold in limited quantities.")}</li>
           <li>
             •{" "}

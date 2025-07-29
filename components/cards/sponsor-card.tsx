@@ -41,67 +41,103 @@ export default function SponsorCard({ theme }: SponsorCardProps) {
         </h2>
       </div>
 
-      {/* Sponsor logos */}
-      <motion.div
-        className="mb-16"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <div className="flex flex-wrap items-center justify-center gap-8 max-w-5xl mx-auto">
-          {/* Ohouse */}
-          <div className="flex items-center justify-center p-4 w-[180px] h-24">
-            <img
-              src="/images/sponsors/ohouse.png"
-              alt="Ohouse"
-              className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
-            />
-          </div>
+      {/* Sponsor logos and Media Partner - combined wrapper */}
+      <div className="mb-16">
+        {/* Sponsor logos */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="flex flex-wrap items-center justify-center gap-8 max-w-5xl mx-auto mb-8">
+            {/* Ohouse */}
+            <div className="flex items-center justify-center p-4 w-[180px] h-24">
+              <img
+                src="/images/sponsors/ohouse.png"
+                alt="Ohouse"
+                className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
 
-          {/* AWS */}
-          <div className="flex items-center justify-center p-4 w-[180px] h-24">
-            <img
-              src="/images/sponsors/aws.png"
-              alt="AWS"
-              className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
-            />
-          </div>
+            {/* AWS */}
+            <div className="flex items-center justify-center p-4 w-[180px] h-24">
+              <img
+                src="/images/sponsors/aws.png"
+                alt="AWS"
+                className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
 
-          {/* Moyo - 20% 크기 증가 */}
-          <div className="flex items-center justify-center p-4 w-[180px] h-24">
-            <img
-              src="/images/sponsors/moyo.png"
-              alt="Moyo"
-              className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
-              style={{ transform: "scale(1.2)" }}
-            />
-          </div>
+            {/* Moyo - 20% 크기 증가 */}
+            <div className="flex items-center justify-center p-4 w-[180px] h-24">
+              <img
+                src="/images/sponsors/moyo.png"
+                alt="Moyo"
+                className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                style={{ transform: "scale(1.2)" }}
+              />
+            </div>
 
-          {/* 강남언니 */}
-          <div className="flex items-center justify-center p-4 w-[180px] h-24">
-            <img
-              src="/images/sponsors/gangnam-unni.png"
-              alt="강남언니"
-              className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
-            />
-          </div>
+            {/* 강남언니 */}
+            <div className="flex items-center justify-center p-4 w-[180px] h-24">
+              <img
+                src="/images/sponsors/gangnam-unni.png"
+                alt="강남언니"
+                className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
 
-          {/* LottieFiles - 20% 크기 증가 */}
-          <div className="flex items-center justify-center p-4 w-[180px] h-24">
-            <img
-              src="/images/sponsors/lottiefiles.svg"
-              alt="LottieFiles"
-              className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
-              style={{ transform: "scale(1.2)" }}
-            />
+            {/* LottieFiles - 20% 크기 증가 */}
+            <div className="flex items-center justify-center p-4 w-[180px] h-24">
+              <img
+                src="/images/sponsors/lottiefiles.svg"
+                alt="LottieFiles"
+                className="max-h-full w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                style={{ transform: "scale(1.2)" }}
+              />
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+
+        {/* Media Partner 섹션 */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <div className="flex items-center justify-center gap-8 max-w-4xl mx-auto">
+            {/* Left decorative line */}
+            <div className="flex-1 h-px bg-gray-600"></div>
+
+            {/* Media Partner text */}
+            <div
+              className="text-gray-400 uppercase tracking-wider text-sm font-medium whitespace-nowrap"
+              style={{ fontFamily: "Jost, sans-serif" }}
+            >
+              Media Partner
+            </div>
+
+            {/* 요즘IT logo */}
+            <div className="flex items-center justify-center p-4 w-[240px] h-32">
+              <img
+                src="/images/sponsors/yojeumit-gray.png"
+                alt="요즘IT"
+                className="max-h-full w-auto object-contain filter brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
+                style={{ transform: "scale(1.5)" }}
+              />
+            </div>
+
+            {/* Right decorative line */}
+            <div className="flex-1 h-px bg-gray-600"></div>
+          </div>
+        </motion.div>
+      </div>
 
       {/* Sponsorship inquiry */}
       <motion.div
-        className="text-center p-6 md:p-6 rounded-xl bg-gray-900/30 backdrop-blur-md border border-gray-800 max-w-4xl mx-auto"
+        className="text-center p-6 md:p-6 rounded-xl bg-gray-900/30 backdrop-blur-md border border-gray-800 max-w-4xl mx-auto mt-24"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}

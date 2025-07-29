@@ -22,7 +22,7 @@ export const sections: Section[] = [
       en: "FEConf",
     },
     description: {
-      kr: "FEconf에서 여러분이 /경험할 수 있는 것은?",
+      kr: "FEConf에서 여러분이 /경험할 수 있는 것은?",
       en: "What you can /experience at FEConf?",
     },
     button: {
@@ -67,7 +67,7 @@ export const sections: Section[] = [
       en: "Networking Session",
     },
     description: {
-      kr: "FEconf에서 모두와 함께/어울리고 소통하세요",
+      kr: "FEConf에서 모두와 함께/어울리고 소통하세요",
       en: "Connect and communicate /with everyone at FEConf",
     },
     button: {
@@ -82,8 +82,8 @@ export const sections: Section[] = [
       en: "Ticket Information",
     },
     description: {
-      kr: "FEConf2025 /티켓을 지금 구매하세요",
-      en: "Purchase your /FEConf2025 tickets now",
+      kr: "FEConf 2025 /티켓을 지금 구매하세요",
+      en: "Purchase your /FEConf 2025 tickets now",
     },
     button: {
       kr: "티켓 구매하기",
@@ -97,7 +97,7 @@ export const sections: Section[] = [
       en: "Sponsor Introduction",
     },
     description: {
-      kr: "FEconf를 함께하는 /한국 대표 FE 기업들",
+      kr: "FEConf를 함께하는 /한국 대표 FE 기업들",
       en: "Korea's leading FE companies /supporting FEConf",
     },
   },

@@ -73,11 +73,27 @@ export default function FeconfCard({ theme }: FeconfCardProps) {
       transition={{ duration: 0.8 }}
     >
       {/* Main Content Container */}
-      <div className="w-full flex flex-col items-center justify-center gap-12 text-center">
+      <div className="w-full flex flex-col items-center justify-center gap-6 text-center">
+        {/* Date and Location Info */}
+        <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 mb-8 flex-wrap">
+          <div className="flex items-center gap-2">
+            <img src="/images/icons/time.svg" alt="Time" className="w-6 h-6 sm:w-8 sm:h-8" />
+            <span className="text-white/90 text-sm sm:text-base font-medium pr-1">
+              {language === "kr" ? "2025.8.23 11:00" : "2025.8.23 11:00"}
+            </span>
+          </div>
+          <span className="text-white/50 text-sm sm:text-base">|</span>
+          <div className="flex items-center gap-2">
+            <img src="/images/icons/location.svg" alt="Location" className="w-6 h-6 sm:w-8 sm:h-8" />
+            <span className="text-white/90 text-sm sm:text-base font-medium">
+              {language === "kr" ? "세종대학교 광개토관" : "Sejong University Gwanggaeto Hall"}
+            </span>
+          </div>
+        </div>
         {/* FECONF Logo Section */}
         <div className="flex-shrink-0">
           <motion.div className="flex items-center justify-center">
-            <div className="text-white w-84 h-18 sm:w-96 sm:h-21 md:w-108 md:h-24 lg:w-120 lg:h-27 xl:w-120 xl:h-27">
+            <div className="text-white w-113 h-24 sm:w-130 sm:h-29 md:w-146 md:h-32 lg:w-162 lg:h-37 xl:w-162 xl:h-37">
               <svg className="w-full h-full" viewBox="0 0 388 83" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M0 80.492H4.54256V43.782H39.2505V39.2495H4.54256V6.88797H39.2505V2.34863H0V80.492Z"
@@ -122,10 +138,10 @@ export default function FeconfCard({ theme }: FeconfCardProps) {
         </div>
 
         {/* Content Section */}
-        <div className="flex-1 flex flex-col items-center gap-6">
+        <div className="flex-1 flex flex-col items-center gap-16">
           {/* Description Text */}
           <h2
-            className="text-base text-white text-center leading-relaxed md:text-xl leading-8 my-2.5 font-thin tracking-normal"
+            className="text-base text-white text-center leading-relaxed leading-8 font-thin tracking-normal my-5 md:text-lg"
             style={{
               fontFamily: "var(--font-42dot)",
               fontWeight: "400",
@@ -137,7 +153,7 @@ export default function FeconfCard({ theme }: FeconfCardProps) {
                 <br />
                 마주했던 치열한 고민과 깊은 인사이트를 함께 공유하며,
                 <br />
-                FEconf는 여러분과 함께 성장합니다
+                FEConf는 여러분과 함께 성장합니다
               </>
             ) : (
               <>

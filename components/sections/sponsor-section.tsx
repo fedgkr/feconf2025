@@ -19,6 +19,7 @@ export default function SponsorSection({ theme }: SponsorSectionProps) {
     { src: "/images/sponsors/sponsor3.png", alt: "Sponsor 3" },
     { src: "/images/sponsors/hyundai.png", alt: "Hyundai" },
     { src: "/images/sponsors/googlecloud.png", alt: "Google Cloud" },
+    { src: "/images/sponsors/yojeumit-gray.png", alt: "요즘IT" },
   ])
 
   const buttonStyle = {
@@ -138,7 +139,7 @@ export default function SponsorSection({ theme }: SponsorSectionProps) {
         transition={{ duration: 0.8, delay: 0.4 }}
       >
         <div className="text-sm font-bold mb-6 text-white" style={{ fontWeight: "700" }}>
-          {language === "kr" ? "���대 후원사 리스트" : "Previous Sponsors"}
+          {language === "kr" ? "역대 후원사 리스트" : "Previous Sponsors"}
         </div>
         <div className="relative w-full overflow-hidden">
           <motion.div
@@ -186,6 +187,29 @@ export default function SponsorSection({ theme }: SponsorSectionProps) {
               </div>
             ))}
           </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Media Partner 섹션 */}
+      <motion.div
+        className="mt-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+      >
+        <div className="text-center">
+          <div className="text-gray-400 mb-4 uppercase tracking-wider text-sm font-medium">Media Partner</div>
+          <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center" style={{ width: "200px", height: "80px" }}>
+              <img
+                src="/images/sponsors/yojeumit-gray.png"
+                alt="요즘IT"
+                className="max-w-full max-h-full object-contain filter brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
+                style={{ maxHeight: "60px" }}
+              />
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>

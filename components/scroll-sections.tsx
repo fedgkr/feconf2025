@@ -16,6 +16,7 @@ import CodeOfConductCard from "./cards/code-of-conduct-card"
 import ProgramSection from "./sections/program-section"
 import TicketCard from "./cards/ticket-card"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 interface ScrollSectionsProps {
   theme: Theme
@@ -292,15 +293,30 @@ transparent 100%)`,
 
           <StickyScrollSection className="flex items-center justify-center z-20">
             <div className="w-full px-5 py-5 md:px-10 md:py-10 mx-auto text-center pointer-events-auto bg-transparent">
+              <ScrollAnimation type="fade" delay={0.1}>
+                <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 mb-6 text-white/80 flex-wrap">
+                  <div className="flex items-center gap-2">
+                    <Image src="/images/icons/time.svg" alt="Time" width={24} height={24} className="w-6 h-6" />
+                    <span className="text-sm sm:text-base font-medium">2025.8.23 11:00</span>
+                  </div>
+                  <span className="text-white/50 text-sm sm:text-base">|</span>
+                  <div className="flex items-center gap-2">
+                    <Image src="/images/icons/location.svg" alt="Location" width={24} height={24} className="w-6 h-6" />
+                    <span className="text-sm sm:text-base font-medium">
+                      {t("세종대학교 광개토회관", "Gwanggaeto Building, Sejong University")}
+                    </span>
+                  </div>
+                </div>
+              </ScrollAnimation>
               <ScrollAnimation type="fade" delay={0.2}>
-                <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-8 whitespace-nowrap py-2.5">
+                <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-8 whitespace-nowrap md:py-2.5">
                   {t("함께 만들어가는 FEConf", "Building FEConf Together")}
                 </h2>
               </ScrollAnimation>
               <ScrollAnimation type="slide" direction="up" delay={0.4}>
                 <p className="text-lg md:text-xl text-white/70 mb-12 max-w-2xl mx-auto">
                   {t(
-                    "프론트엔드 개발 컨퍼런스, FEconf에서 다양한 기술과 트렌드를 경험하세요.",
+                    "프론트엔드 개발 컨퍼런스, FEConf에서 다양한 기술과 트렌드를 경험하세요.",
                     "Experience various technologies and trends at Korea's largest frontend development conference, FEConf.",
                   )}
                 </p>
