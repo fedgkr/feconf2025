@@ -78,8 +78,8 @@ const sessionA: Session[] = [
     id: "a3",
     time: "13:40 – 14:10",
     title: {
-      kr: "Swift·Kotlin 한줄 없이 사용하는 Expo 전용 OTA 업데이트 시스템 (feat. Next.js)",
-      en: "Expo-specific OTA Update System without Swift/Kotlin (feat. Next.js)",
+      kr: "Swift·Kotlin 한줄 없이 만드는 Expo 전용 OTA 업데이트 시스템(feat. Next.js)",
+      en: "Building an Expo-specific OTA Update System Without Swift/Kotlin (feat. Next.js)",
     },
     speaker: {
       kr: "김도윤",
@@ -87,11 +87,11 @@ const sessionA: Session[] = [
     },
     company: {
       kr: "온아웃",
-      en: "OnOut",
+      en: "Onout Inc.",
     },
     content: {
-      kr: "Expo를 사용하면 React Native로 간단하게 앱을 만들 수 있습니다. 하지만 Expo에서 제공하는 OTA(eas update)는 비용이 비싸고, 대부분의 서드파티 솔루션은 Swift나 Kotlin으로의 네이티브 코드 수정 또는 복잡한 설정을 요구합니다. 이를 해결하기 위해 네이티브 코드 작성 없이, 프론트엔드 개발자에게 친화적인 방식으로 Expo 프로젝트에서 OTA를 구현하는 방법을 소개합니다.",
-      en: "Using Expo makes it easy to create apps with React Native. However, Expo's OTA (eas update) is expensive, and most third-party solutions require native code modifications in Swift or Kotlin or complex configurations. To solve this, we introduce how to implement OTA in Expo projects in a frontend developer-friendly way without writing native code.",
+      kr: "Expo를 사용하면 TypeScript만으로 간단하게 React Native 앱을 만들 수 있습니다. 하지만 Expo의 OTA 기능(eas update)은 비용이 비싸고, 대부분의 서드파티 솔루션은 Expo의 모든 기능을 온전히 지원하지 않습니다. 이에 따라, 네이티브 코드를 작성하지 않고도 프론트엔드 개발자에게 친화적인 방식으로 Expo 프로젝트에서 OTA를 구현하는 방법을 소개합니다.",
+      en: "Using Expo, you can easily build React Native apps with just TypeScript. However, Expo's OTA feature (eas update) can be costly, and most third-party solutions do not fully support all of Expo's capabilities. To address this, we introduce a way to implement OTA in Expo projects without writing any native code, in a way that's friendly to frontend developers.",
     },
   },
   {
