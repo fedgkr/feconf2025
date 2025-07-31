@@ -456,8 +456,15 @@ export default function TicketCard({ theme }: TicketCardProps) {
           <li>
             •{' '}
             {t(
-              '티켓 구매 후 환불은 불가능합니다.',
-              'No refunds after ticket purchase.'
+              '티켓 구매 후 환불은 이벤트 시작일 기준 7일 전까지 가능합니다. 정확한 날짜는 티켓 판매 플랫폼을 통해 확인해주세요.',
+              'Refunds are available up to 7 days before the event starts. Please check the exact date through the ticket sales platform.'
+            )}
+          </li>
+          <li>
+            •{' '}
+            {t(
+              '티켓은 1인당 1개만 구매가 가능합니다.',
+              'Only one ticket can be purchased per person.'
             )}
           </li>
           <li>
