@@ -182,20 +182,20 @@ const sessionB: Session[] = [
     id: "b1",
     time: "12:00 – 12:30",
     title: {
-      kr: "스벨트를 사랑해주세요",
-      en: "Please love Svelte",
+      kr: "스벨트를 통해 리액트 더 잘 이해하기",
+      en: "Understanding React Better Through Svelte",
     },
     speaker: {
       kr: "문대승",
       en: "Daeseung Moon",
     },
     company: {
-      kr: "개인",
-      en: "Individual",
+      kr: "피오유엘 (POUL)",
+      en: "POUL",
     },
     content: {
-      kr: "\"프론트엔드 vs 리액트엔드: 당신은 어떤 개발자인가요?\"\n\n리액트 생태계에만 갇혀있다면 당신은 '리액트엔드' 개발자일 수도 있습니다. 리액트식 성능 최적화, 끝없는 리렌더링 문제, 보일러플레이트 지옥에서 벗어나 시그널 패턴과 컴파일러 최적화로 무장한 스벨트의 세계를 경험해보세요. 진정한 프론트엔드 개발자로 진화하는 시간이 될 것입니다.",
-      en: "\"Frontend vs Reactend: What kind of developer are you?\"\n\nIf you're trapped only in the React ecosystem, you might be a 'Reactend' developer. Escape from React-style performance optimization, endless re-rendering problems, and boilerplate hell to experience the world of Svelte armed with signal patterns and compiler optimization. It will be a time to evolve into a true frontend developer.",
+      kr: "프론트엔드 vs 리액트엔드: 당신은 어떤 개발자인가요? 다른 프레임워크를 배운다는 것은 오히려 현재 내가 쓰고 있는 도구를 잘 이해하는 길일 수 있습니다. 이번 발표에서는 스벨트에서 얻은 인사이트를 리액트에 접목할 수 있는지 소개하겠습니다.",
+      en: "Frontend vs Reactend: What kind of developer are you? Learning other frameworks can actually be a path to better understanding the tools you currently use. In this presentation, I'll introduce how insights gained from Svelte can be applied to React.",
     },
   },
   {
