@@ -354,8 +354,8 @@ const hallCSessions: Session[] = [
       en: "Lightning Talk - [Group 2] Craftsmen Who Handle Tools",
     },
     content: {
-      kr: "박현우: 킵올빌런 은퇴식\n한상욱: 오픈소스 밥상차리기: 환경설정과 디버깅편\n최관수: CSS로 할 수 있는 것들(가제)\n김재서: React memoization 언제 적용 하는 것이 좋을까요?\n손효정: UI 코드 생성 자동화를 프로덕션까지: 우리 팀은 Figma MCP + Cursor(AI)와 함께 일합니다\n오소현: 소규모 스타트업의 디자인 시스템, 도입부터 안정화까지\n유승완: UI와 Business Logic의 분리, 저 잘했죠?",
-      en: "Park Hyunwoo: Keep All Villain retirement ceremony\nHan Sangwook: Setting the open source table: Environment setup and debugging edition\nChoi Gwansu: Things you can do with CSS (working title)\nKim Jaeseo: When should React memoization be applied?\nSon Hyojeong: UI code generation automation to production: Our team works with Figma MCP + Cursor(AI)\nOh Sohyun: Design system for small startups, from introduction to stabilization\nYoo Seungwan: Separation of UI and Business Logic, did I do well?",
+      kr: "박현우: 킵올빌런 은퇴식\n한상욱: 오픈소스 밥상차리기: 환경설정과 디버깅편\n최관수: 최신 CSS? 10년 뒤에 쓰면 되나요?\n김재서: React memoization 언제 적용 하는 것이 좋을까요?\n손효정: UI 코드 생성 자동화를 프로덕션까지: 우리 팀은 Figma MCP + Cursor(AI)와 함께 일합니다\n오소현: 소규모 스타트업의 디자인 시스템, 도입부터 안정화까지\n유승완: UI와 Business Logic의 분리, 저 잘했죠?",
+      en: "Park Hyunwoo: Keep All Villain retirement ceremony\nHan Sangwook: Setting the open source table: Environment setup and debugging edition\nChoi Gwansoo: Latest CSS? Can I use it 10 years later?\nKim Jaeseo: When should React memoization be applied?\nSon Hyojeong: UI code generation automation to production: Our team works with Figma MCP + Cursor(AI)\nOh Sohyun: Design system for small startups, from introduction to stabilization\nYoo Seungwan: Separation of UI and Business Logic, did I do well?",
     },
   },
 ]
