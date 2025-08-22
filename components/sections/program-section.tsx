@@ -222,8 +222,8 @@ const sessionB: Session[] = [
     id: "b3",
     time: "13:40 – 14:10",
     title: {
-      kr: "중요하지만 긴급하지 않은 일, 그럼에도 계획해야 하는 웹 접근성",
-      en: "Important but Not Urgent, Web Accessibility That Still Needs to Be Planned",
+      kr: "모두를 위한 웹 접근성은 무엇이고, 어떻게 하나요? 💬 🔉",
+      en: "Web Accessibility for Everyone: What is it and How Do We Do It? 💬 🔉",
     },
     speaker: {
       kr: "김무훈",
@@ -234,8 +234,8 @@ const sessionB: Session[] = [
       en: "A11YKR Community",
     },
     content: {
-      kr: "모든 사람을 위한 웹 접근성 지원과 설계, 제대로 알아봅시다.\n\n웹 프런트엔드 서비스에서 접근성 지원은 여전히 제도적으로 의무화된 항공사 웹 서비스와 정부/공공기관 외에 모범 사례가 흔치 않고, 확실한 정답이 정해져 있지 않은 분야입니다.\n- 혹시 웹 접근성이 장애 사용자만을 위한 특수한 경험이라고 오해하고 계신가요? 웹의 본연의 힘은 보편성에 있습니다. 장애와 관계없이 모든 사람의 콘텐츠 접근은 필수적이라고 생각합니다.\n-웹 접근성을 지원하기 위한 UI 컴포넌트 설계에 막연함을 느끼시나요? 웹 접근성 표준을 준수하면서, 일관된 UI 제어 경험을 어떻게 설계할 수 있는지 제가 고려했던 사항을 소개합니다.\n\n따라서 아래 명제에 대한 발표자의 생각이 궁금하시면 꼭 보러 와주세요!\n1. 웹 접근성은 장애 사용자만을 위한 특수한 사용자 경험을 지칭하는 기술 분야이다.\n2. 웹 접근성은 보조 기술(AT) 지원을 위한 추가 사용자 인터페이스로, 웹 서비스의 구현 양이 그만큼 더 늘어날 것이다.",
-      en: "In web frontend services, web accessibility support still lacks common best practices outside of institutionally mandated airline web services and government/public institutions, and it remains a field without definitive answers.\n\n- Do you perhaps misunderstand web accessibility as a specialized experience only for users with disabilities? The power of the web lies in its universality. I believe that content access for all people, regardless of disability, is essential.\n- Do you feel uncertain about designing UI components to support web accessibility? I will introduce the considerations I had in mind for how to design consistent UI control experiences while adhering to web accessibility standards.\n\nTherefore, if you're curious about the presenter's thoughts on the following propositions, please come and see the presentation!\n1. Web accessibility refers to a technical field that designates specialized user experiences only for users with disabilities.\n2. Web accessibility is an additional user interface for supporting assistive technology (AT), and it would increase the amount of web service implementation accordingly.",
+      kr: "접근성은 장애인을 위한 특수한 경험을 넘어 \"모든 사람의 폭 넓은 콘텐츠 접근\"을 지향하는 기술입니다.\n\n웹 접근성 표준을 준수하면서, 일관된 UI 제어 경험을 어떻게 설계할 수 있는지 제 실무 경험을 소개합니다.\n따라서 접근성에 막연함을 느끼는 청중의 경우, 의문이 많이 해소되실 겁니다. 꼭 보러 와주세요!",
+      en: "Accessibility is a technology that goes beyond a special experience for people with disabilities, aiming for \"broad content access for everyone\".\n\nI will share my practical experience on how to design a consistent UI control experience while adhering to web accessibility standards.\nTherefore, for those in the audience who feel uncertain about accessibility, I hope this will resolve many of your questions. Please come and see!",
     },
   },
   {
